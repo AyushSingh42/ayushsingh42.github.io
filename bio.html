@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Singh - Bio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background: #f7f3ed;
+            color: #2a2420;
+            line-height: 1.8;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #2a2420;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .affiliation {
+            font-size: 1.05rem;
+            color: #6b5d52;
+            margin-bottom: 50px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        hr {
+            width: 100%;
+            margin: 2rem 0;
+            border: none;
+            border-top: 1px solid #d4c8b8;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 1.1rem;
+            color: #4a3f36;
+            text-decoration: none;
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #4a3f36;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2a2420;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .bio-content {
+            margin-top: 60px;
+        }
+
+        .bio-content h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            margin-bottom: 30px;
+            color: #2a2420;
+        }
+
+        .bio-content p {
+            margin-bottom: 24px;
+            text-align: justify;
+            font-size: 1.05rem;
+        }
+
+        .contact {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #d4c8b8;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #6b5d52;
+        }
+
+        .contact a {
+            color: #4a3f36;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact a:hover {
+            border-bottom-color: #4a3f36;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                gap: 25px;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+
+            .bio-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .bio-content p {
+                font-size: 1rem;
+            }
+        }
+        /* social icons */
+        .social-links {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+            text-decoration: none;
+            transition: transform 0.12s ease, opacity 0.12s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ayush Singh</h1>
+        <p class="affiliation">CS + Linguistics · University of Illinois Urbana-Champaign</p>
+
+        <hr>
+
+        <nav>
+            <a href="index.html">home</a>
+            <a href="bio.html" class="active">bio</a>
+            <a href="research.html">research</a>
+            <a href="notes.html">notes</a>
+            <a href="movies.html">movies</a>
+        </nav>
+
+        <div class="bio-content">
+            <h2>About Me</h2>
+
+            <p>I'm a student at the University of Illinois Urbana-Champaign pursuing a degree in Computer Science and Linguistics. My research interests lie at the intersection of natural language processing, computational linguistics, artificial intelligence, and the psychology of language.</p>
+
+            <p>Outside of class, I love movies, books, and all things Knicks. You can read some of my movie reviews on this website, alongside notes on the courses that I have taken during my time at UIUC.</p>
+        </div>
+
+        <div class="contact">
+            <p>ayushs13 [at] illinois [dot] edu</p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ayush-singh-269626263/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                
+                <a href="https://github.com/AyushSingh42/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                
+                <a href="https://letterboxd.com/ayush42/" target="_blank" rel="noopener noreferrer" aria-label="Letterboxd">
+                    <?xml version="1.0" encoding="UTF-8"?>
+                        <svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>letterboxd-decal-dots-pos-mono</title>
+                            <defs>
+                                <rect id="path-1" x="0" y="0" width="129.847328" height="141.443299"></rect>
+                                <rect id="path-3" x="0" y="0" width="129.847328" height="141.443299"></rect>
+                            </defs>
+                            <g id="letterboxd-decal-dots-pos-mono" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <circle id="Circle" fill="#6b5d52" cx="250" cy="250" r="250"></circle>
+                                <g id="Dots" transform="translate(61.000000, 180.000000)">
+                                    <ellipse id="Green" fill="#f7f3ed" cx="189" cy="70" rx="70.0786517" ry="70"></ellipse>
+                                    <g id="Blue" transform="translate(248.152672, 0.000000)">
+                                        <mask id="mask-2" fill="white">
+                                            <use xlink:href="#path-1"></use>
+                                        </mask>
+                                        <g id="Mask"></g>
+                                        <ellipse fill="#f7f3ed" mask="url(#mask-2)" cx="59.7686766" cy="70" rx="70.0786517" ry="70"></ellipse>
+                                    </g>
+                                    <g id="Orange">
+                                        <mask id="mask-4" fill="white">
+                                            <use xlink:href="#path-3"></use>
+                                        </mask>
+                                        <g id="Mask"></g>
+                                        <ellipse fill="#f7f3ed" mask="url(#mask-4)" cx="70.0786517" cy="70" rx="70.0786517" ry="70"></ellipse>
+                                    </g>
+                                    <path d="M129.539326,107.063108 C122.810493,96.3149291 118.921348,83.611134 118.921348,70 C118.921348,56.388866 122.810493,43.6850709 129.539326,32.9368922 C136.268159,43.6850709 140.157303,56.388866 140.157303,70 C140.157303,83.611134 136.268159,96.3149291 129.539326,107.063108 L129.539326,107.063108 Z" id="Overlap" fill="#4a3f36"></path>
+                                    <path d="M248.460674,32.9368922 C255.189507,43.6850709 259.078652,56.388866 259.078652,70 C259.078652,83.611134 255.189507,96.3149291 248.460674,107.063108 C241.731841,96.3149291 237.842697,83.611134 237.842697,70 C237.842697,56.388866 241.731841,43.6850709 248.460674,32.9368922 L248.460674,32.9368922 Z" id="Overlap" fill="#4a3f36"></path>
+                                </g>
+                            </g>
+                        </svg>
+                </a>
+                
+                <a href="https://substack.com/@ayushsingh42" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="100%" viewBox="0 0 225 225" enable-background="new 0 0 225 225" xml:space="preserve">
+<path fill="#6b5d52" opacity="1.000000" stroke="none" 
+	d="
+M104.000000,226.000000 
+	C69.333336,226.000000 35.166672,226.000000 1.000005,226.000000 
+	C1.000003,151.000000 1.000003,76.000015 1.000002,1.000015 
+	C75.999992,1.000010 150.999985,1.000010 225.999969,1.000005 
+	C225.999985,75.999985 225.999985,150.999969 226.000000,225.999969 
+	C185.500000,226.000000 145.000000,226.000000 104.000000,226.000000 
+M72.915955,74.869507 
+	C100.279686,74.929840 127.643410,74.990173 155.258286,75.119644 
+	C155.526733,75.134766 155.756821,75.040146 156.048431,73.959534 
+	C156.333878,63.665993 156.333878,63.665810 145.952805,63.665745 
+	C124.513878,63.665615 103.074951,63.665657 81.636024,63.665714 
+	C70.370239,63.665741 70.370239,63.665817 71.255478,75.000275 
+	C71.255478,75.000275 71.613731,75.120773 71.613731,75.120773 
+	C71.613731,75.120773 71.992973,75.050499 72.915955,74.869507 
+M82.846680,158.358353 
+	C91.743103,152.496887 100.718834,146.750610 109.491615,140.709579 
+	C112.441696,138.678116 114.637299,138.765717 117.552948,140.750198 
+	C127.735168,147.680527 138.049057,154.420914 148.416183,161.072525 
+	C150.089569,162.146164 152.693619,163.351242 154.121506,162.743362 
+	C155.344574,162.222672 156.023331,159.196915 156.042679,157.270035 
+	C156.193192,142.281128 156.134460,127.290024 156.111221,112.299644 
+	C156.109024,110.879440 155.906662,109.459549 155.814774,108.266968 
+	C127.232529,108.266968 99.178543,108.266968 70.881844,108.266968 
+	C70.881844,125.476860 70.820862,142.287018 70.924919,159.096161 
+	C70.950790,163.273911 73.166901,164.385040 76.809341,162.321472 
+	C78.688034,161.257111 80.441612,159.971924 82.846680,158.358353 
+M155.694794,86.203194 
+	C154.714645,86.063293 153.734604,85.802055 152.754333,85.801208 
+	C126.620094,85.778702 100.485825,85.778214 74.351585,85.799683 
+	C73.267921,85.800575 72.184448,86.049492 71.148178,86.177040 
+	C71.148178,89.832016 71.148178,93.093132 71.148178,96.595688 
+	C99.474495,96.595688 127.519333,96.595688 156.049240,96.595688 
+	C156.049240,93.255486 156.049240,90.143082 155.694794,86.203194 
+z"/>
+<path fill="#f7f3ed" opacity="1.000000" stroke="none" 
+	d="
+M82.549202,158.572418 
+	C80.441612,159.971924 78.688034,161.257111 76.809341,162.321472 
+	C73.166901,164.385040 70.950790,163.273911 70.924919,159.096161 
+	C70.820862,142.287018 70.881844,125.476860 70.881844,108.266968 
+	C99.178543,108.266968 127.232529,108.266968 155.814774,108.266968 
+	C155.906662,109.459549 156.109024,110.879440 156.111221,112.299644 
+	C156.134460,127.290024 156.193192,142.281128 156.042679,157.270035 
+	C156.023331,159.196915 155.344574,162.222672 154.121506,162.743362 
+	C152.693619,163.351242 150.089569,162.146164 148.416183,161.072525 
+	C138.049057,154.420914 127.735168,147.680527 117.552948,140.750198 
+	C114.637299,138.765717 112.441696,138.678116 109.491615,140.709579 
+	C100.718834,146.750610 91.743103,152.496887 82.549202,158.572418 
+z"/>
+<path fill="#f7f3ed" opacity="1.000000" stroke="none" 
+	d="
+M155.872009,86.616943 
+	C156.049240,90.143082 156.049240,93.255486 156.049240,96.595688 
+	C127.519333,96.595688 99.474495,96.595688 71.148178,96.595688 
+	C71.148178,93.093132 71.148178,89.832016 71.148178,86.177040 
+	C72.184448,86.049492 73.267921,85.800575 74.351585,85.799683 
+	C100.485825,85.778214 126.620094,85.778702 152.754333,85.801208 
+	C153.734604,85.802055 154.714645,86.063293 155.872009,86.616943 
+z"/>
+<path fill="#f7f3ed" opacity="1.000000" stroke="none" 
+	d="
+M155.007141,75.050499 
+	C127.643410,74.990173 100.279686,74.929840 72.224884,74.881149 
+	C71.533821,74.892792 71.051727,74.835983 71.051727,74.835983 
+	C70.370239,63.665817 70.370239,63.665741 81.636024,63.665714 
+	C103.074951,63.665657 124.513878,63.665615 145.952805,63.665745 
+	C156.333878,63.665810 156.333878,63.665993 155.757416,74.426132 
+	C155.466415,74.892738 155.007141,75.050499 155.007141,75.050499 
+z"/>
+<path fill="#hh" opacity="1.000000" stroke="none" 
+	d="
+M71.153603,74.918129 
+	C71.051727,74.835983 71.533821,74.892792 71.763397,74.971649 
+	C71.992973,75.050499 71.613731,75.120773 71.613731,75.120773 
+	C71.613731,75.120773 71.255478,75.000275 71.153603,74.918129 
+z"/>
+<path fill="#hh" opacity="1.000000" stroke="none" 
+	d="
+M155.132721,75.085068 
+	C155.007141,75.050499 155.466415,74.892738 155.707489,74.864258 
+	C155.756821,75.040146 155.526733,75.134766 155.132721,75.085068 
+z"/>
+</svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
