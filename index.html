@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Garamond', 'Georgia', serif;
+            background: #f7f3ed;
+            color: #2a2420;
+            line-height: 1.8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            background: #e8dfd1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d4c8b8;
+        }
+
+        .profile-image svg {
+            width: 70px;
+            height: 70px;
+            opacity: 0.6;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #2a2420;
+            margin-bottom: 12px;
+        }
+
+        .affiliation {
+            font-size: 1.05rem;
+            color: #6b5d52;
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 1.1rem;
+            color: #4a3f36;
+            text-decoration: none;
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #4a3f36;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2a2420;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .contact {
+            font-size: 0.95rem;
+            color: #6b5d52;
+        }
+
+        .contact a {
+            color: #4a3f36;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact a:hover {
+            border-bottom-color: #4a3f36;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                gap: 25px;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-image">
+            <!-- Replace this SVG with your own image or logo -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#6b5d52" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+            </svg>
+        </div>
+
+        <h1>Your Name</h1>
+        <p class="affiliation">Department · University</p>
+
+        <nav>
+            <a href="#bio">bio</a>
+            <a href="#research">research</a>
+            <a href="#notes">notes</a>
+            <a href="#movies">movies</a>
+        </nav>
+
+        <div class="contact">
+            <a href="mailto:ayushs13@illinois.edu">ayushs13 [at] illinois dot edu</a>
+        </div>
+    </div>
+</body>
+</html>
