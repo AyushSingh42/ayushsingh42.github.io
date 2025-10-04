@@ -1,0 +1,213 @@
+{
+  "nodes": [
+    {
+      "id": "Basque/Basque - September 30th.md"
+    },
+    {
+      "id": "Basque/Basque - September 18th.md"
+    },
+    {
+      "id": "Basque/Basque - August 26th.md"
+    },
+    {
+      "id": "Basque/Basque - August 28th.md"
+    },
+    {
+      "id": "Basque/Basque - September 9th.md"
+    },
+    {
+      "id": "Basque/Basque - September 16th.md"
+    },
+    {
+      "id": "Basque/Basque - September 4th.md"
+    },
+    {
+      "id": "Basque/Basque - September 2nd.md"
+    },
+    {
+      "id": "Basque/Basque - September 11th.md"
+    },
+    {
+      "id": "Basque/BASQ 401 - Beginner's Basque.md"
+    },
+    {
+      "id": "Types of Generative Models.md"
+    },
+    {
+      "id": "Recursion.md"
+    },
+    {
+      "id": "NP-Hardness.md"
+    },
+    {
+      "id": "Types of Machine Learning.md"
+    },
+    {
+      "id": "Cumulative Distribution Function.md"
+    },
+    {
+      "id": "K-means Clustering.md"
+    },
+    {
+      "id": "Random Variable.md"
+    },
+    {
+      "id": "Probability Mass Function.md"
+    },
+    {
+      "id": "Maximum A Posteriori.md"
+    },
+    {
+      "id": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "id": "Bayes Rules.md"
+    },
+    {
+      "id": "Conditional Independence.md"
+    },
+    {
+      "id": "Naive Bayes.md"
+    },
+    {
+      "id": "Gaussian Naive Bayes.md"
+    },
+    {
+      "id": "Attachments/School/CS 374 - Algorithms & Models of Computation/Undecidability.md"
+    },
+    {
+      "id": "Words.md"
+    },
+    {
+      "id": "Variational Autoencoders.md"
+    },
+    {
+      "id": "Latent Space.md"
+    },
+    {
+      "id": "Principal Component Analysis.md"
+    },
+    {
+      "id": "KL divergence.md"
+    },
+    {
+      "id": "Autoencoders.md"
+    },
+    {
+      "id": "Gaussian Distribution.md"
+    },
+    {
+      "id": "Covariance.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "Autoencoders.md",
+      "target": "Principal Component Analysis.md"
+    },
+    {
+      "source": "Autoencoders.md",
+      "target": "Latent Space.md"
+    },
+    {
+      "source": "Latent Space.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Principal Component Analysis.md",
+      "target": "Covariance.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Latent Space.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Autoencoders.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "KL divergence.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Naive Bayes.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Conditional Independence.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Maximum A Posteriori.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Bayes Rules.md"
+    },
+    {
+      "source": "Probability Mass Function.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Cumulative Distribution Function.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Cumulative Distribution Function.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Types of Generative Models.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - August 26th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - August 28th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 2nd.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 4th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 9th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 11th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 16th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 18th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 30th.md"
+    }
+  ]
+}

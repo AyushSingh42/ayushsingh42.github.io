@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - Ayush Singh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Garamond', 'Georgia', serif;
+            background: #f7f3ed;
+            color: #2a2420;
+            line-height: 1.8;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #2a2420;
+            margin-bottom: 12px;
+        }
+
+        .back-link {
+            font-size: 0.95rem;
+            color: #4a3f36;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            border-bottom-color: #4a3f36;
+        }
+
+        .graph-container {
+            margin-bottom: 70px;
+        }
+
+        .graph-container h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #2a2420;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .graph-embed {
+            width: 100%;
+            height: 500px;
+            background: #1a1a1a;
+            border: 1px solid #d4c8b8;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .graph-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .notes-section {
+            margin-top: 60px;
+        }
+
+        .notes-section h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #2a2420;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .course-item {
+            background: rgba(232, 223, 209, 0.3);
+            padding: 25px;
+            border: 1px solid #d4c8b8;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .course-item:hover {
+            background: rgba(232, 223, 209, 0.5);
+        }
+
+        .course-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2a2420;
+            margin-bottom: 8px;
+        }
+
+        .course-item .course-code {
+            font-size: 0.9rem;
+            color: #6b5d52;
+            margin-bottom: 15px;
+        }
+
+        .course-item a {
+            font-size: 0.95rem;
+            color: #4a3f36;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .course-item a:hover {
+            border-bottom-color: #4a3f36;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: #d4c8b8;
+            margin: 50px 0;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .graph-embed {
+                height: 350px;
+            }
+
+            .course-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Notes</h1>
+            <a href="index.html" class="back-link">← back to home</a>
+        </header>
+
+        <div class="graph-container">
+            <h2>My Obsidian Graph</h2>
+            <div class="graph-embed">
+                <iframe src="graph.html" title="My Obsidian Graph"></iframe>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="notes-section">
+            <h2>Course Notes</h2>
+            
+            <div class="course-list">
+                <div class="course-item">
+                    <h3>Corpus Linguistics</h3>
+                    <p class="course-code">LING 413 · Fall 2025</p>
+                    <a href="wip.html">view notes →</a>
+                </div>
+
+                <div class="course-item">
+                    <h3>Computational Linguistics</h3>
+                    <p class="course-code">LING 406 · Fall 2025</p>
+                    <a href="wip.html">view notes →</a>
+                </div>
+
+                <div class="course-item">
+                    <h3>Machine Learning</h3>
+                    <p class="course-code">CS 446 · Fall 2025</p>
+                    <a href="wip.html">view notes →</a>
+                </div>
+
+                <div class="course-item">
+                    <h3>Deep Generative Models</h3>
+                    <p class="course-code">ECE 498 · Fall 2025</p>
+                    <a href="wip.html">view notes →</a>
+                </div>
+
+                <div class="course-item">
+                    <h3>Beginner's Basque</h3>
+                    <p class="course-code">BASQ 401 · Fall 2025</p>
+                    <a href="wip.html">view notes →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
