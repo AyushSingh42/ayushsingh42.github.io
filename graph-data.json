@@ -1,106 +1,184 @@
 {
   "nodes": [
     {
-      "id": "Basque/Basque - September 30th.md"
-    },
-    {
-      "id": "Basque/Basque - September 18th.md"
-    },
-    {
-      "id": "Basque/Basque - August 26th.md"
-    },
-    {
-      "id": "Basque/Basque - August 28th.md"
-    },
-    {
-      "id": "Basque/Basque - September 9th.md"
-    },
-    {
-      "id": "Basque/Basque - September 16th.md"
-    },
-    {
-      "id": "Basque/Basque - September 4th.md"
-    },
-    {
-      "id": "Basque/Basque - September 2nd.md"
-    },
-    {
-      "id": "Basque/Basque - September 11th.md"
-    },
-    {
-      "id": "Basque/BASQ 401 - Beginner's Basque.md"
-    },
-    {
-      "id": "Types of Generative Models.md"
-    },
-    {
-      "id": "Recursion.md"
-    },
-    {
-      "id": "NP-Hardness.md"
-    },
-    {
-      "id": "Types of Machine Learning.md"
-    },
-    {
       "id": "Cumulative Distribution Function.md"
-    },
-    {
-      "id": "K-means Clustering.md"
     },
     {
       "id": "Random Variable.md"
     },
     {
-      "id": "Probability Mass Function.md"
+      "id": "Minkowski Distance.md"
     },
     {
-      "id": "Maximum A Posteriori.md"
+      "id": "K-Nearest Neighbor.md"
     },
     {
-      "id": "Maximum Likelihood Estimation.md"
+      "id": "Dijkstra's Algorithm.md"
     },
     {
-      "id": "Bayes Rules.md"
+      "id": "Covariance.md"
     },
     {
-      "id": "Conditional Independence.md"
+      "id": "Distance Algorithms.md"
     },
     {
-      "id": "Naive Bayes.md"
+      "id": "Hyperparameters.md"
     },
     {
-      "id": "Gaussian Naive Bayes.md"
-    },
-    {
-      "id": "Attachments/School/CS 374 - Algorithms & Models of Computation/Undecidability.md"
-    },
-    {
-      "id": "Words.md"
-    },
-    {
-      "id": "Variational Autoencoders.md"
-    },
-    {
-      "id": "Latent Space.md"
-    },
-    {
-      "id": "Principal Component Analysis.md"
-    },
-    {
-      "id": "KL divergence.md"
+      "id": "Manhattan Distance.md"
     },
     {
       "id": "Autoencoders.md"
     },
     {
+      "id": "Curse of Dimensionality.md"
+    },
+    {
+      "id": "Classification Algorithms.md"
+    },
+    {
+      "id": "K-means Clustering.md"
+    },
+    {
+      "id": "Bayes Rule.md"
+    },
+    {
+      "id": "README.md"
+    },
+    {
+      "id": "Conditional Independence.md"
+    },
+    {
+      "id": "Maximum A Posteriori.md"
+    },
+    {
+      "id": "Logistic Regression.md"
+    },
+    {
+      "id": "Variational Autoencoders.md"
+    },
+    {
+      "id": "Types of Generative Models.md"
+    },
+    {
+      "id": "Words.md"
+    },
+    {
+      "id": "Types of Machine Learning.md"
+    },
+    {
+      "id": "Gaussian Naive Bayes.md"
+    },
+    {
+      "id": "Principal Component Analysis.md"
+    },
+    {
+      "id": "Latent Space.md"
+    },
+    {
       "id": "Gaussian Distribution.md"
     },
     {
-      "id": "Covariance.md"
+      "id": "Naive Bayes.md"
+    },
+    {
+      "id": "Euclidean Distance.md"
+    },
+    {
+      "id": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "id": "Perceptron.md"
+    },
+    {
+      "id": "KL divergence.md"
+    },
+    {
+      "id": "Probability Mass Function.md"
+    },
+    {
+      "id": "Attachments/School/CS 374 - Algorithms & Models of Computation/Undecidability.md"
+    },
+    {
+      "id": "Basque/Basque - September 2nd.md"
+    },
+    {
+      "id": "Basque/Basque - September 9th.md"
+    },
+    {
+      "id": "Basque/Basque - September 18th.md"
+    },
+    {
+      "id": "Basque/Basque - September 11th.md"
+    },
+    {
+      "id": "Basque/Basque - September 16th.md"
+    },
+    {
+      "id": "Basque/Basque - August 26th.md"
+    },
+    {
+      "id": "Basque/Basque - September 30th.md"
+    },
+    {
+      "id": "Basque/Basque - September 4th.md"
+    },
+    {
+      "id": "Basque/BASQ 401 - Beginner's Basque.md"
+    },
+    {
+      "id": "Basque/Basque - August 28th.md"
     }
   ],
   "links": [
+    {
+      "source": "Cumulative Distribution Function.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Cumulative Distribution Function.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Minkowski Distance.md",
+      "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "Minkowski Distance.md",
+      "target": "Manhattan Distance.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Distance Algorithms.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Minkowski Distance.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Hyperparameters.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Curse of Dimensionality.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Dijkstra's Algorithm.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Manhattan Distance.md"
+    },
     {
       "source": "Autoencoders.md",
       "target": "Principal Component Analysis.md"
@@ -110,12 +188,36 @@
       "target": "Latent Space.md"
     },
     {
-      "source": "Latent Space.md",
-      "target": "Variational Autoencoders.md"
+      "source": "Classification Algorithms.md",
+      "target": "K-Nearest Neighbor.md"
     },
     {
-      "source": "Principal Component Analysis.md",
-      "target": "Covariance.md"
+      "source": "Classification Algorithms.md",
+      "target": "Perceptron.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Naive Bayes.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Gaussian Naive Bayes.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "K-means Clustering.md",
+      "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "Maximum A Posteriori.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Maximum A Posteriori.md",
+      "target": "Bayes Rule.md"
     },
     {
       "source": "Variational Autoencoders.md",
@@ -134,12 +236,28 @@
       "target": "KL divergence.md"
     },
     {
+      "source": "Types of Generative Models.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Types of Machine Learning.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
       "source": "Gaussian Naive Bayes.md",
       "target": "Naive Bayes.md"
     },
     {
       "source": "Gaussian Naive Bayes.md",
       "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Principal Component Analysis.md",
+      "target": "Covariance.md"
+    },
+    {
+      "source": "Latent Space.md",
+      "target": "Variational Autoencoders.md"
     },
     {
       "source": "Naive Bayes.md",
@@ -155,23 +273,15 @@
     },
     {
       "source": "Naive Bayes.md",
-      "target": "Bayes Rules.md"
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Maximum Likelihood Estimation.md",
+      "target": "Random Variable.md"
     },
     {
       "source": "Probability Mass Function.md",
       "target": "Random Variable.md"
-    },
-    {
-      "source": "Cumulative Distribution Function.md",
-      "target": "Random Variable.md"
-    },
-    {
-      "source": "Cumulative Distribution Function.md",
-      "target": "Probability Mass Function.md"
-    },
-    {
-      "source": "Types of Generative Models.md",
-      "target": "Variational Autoencoders.md"
     },
     {
       "source": "Basque/BASQ 401 - Beginner's Basque.md",
