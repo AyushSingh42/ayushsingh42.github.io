@@ -125,15 +125,54 @@
             line-height: 1.6;
         }
 
+        .rating {
+            font-size: 1.1rem;
+            color: #d4a574;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .rating .star {
+            display: inline-block;
+            position: relative;
+        }
+
+        .rating .star.filled {
+            color: #d4a574;
+        }
+
+        .rating .star.half {
+            position: relative;
+            color: #d4c8b8;
+        }
+
+        .rating .star.half::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #d4a574;
+            width: 50%;
+            overflow: hidden;
+        }
+
+        .rating .star.empty {
+            color: #d4c8b8;
+        }
+
         .top-four-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 30px;
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .poster-card {
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .poster-card img {
@@ -141,9 +180,16 @@
             height: auto;
             aspect-ratio: 2/3;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 6px;
             border: 1px solid #d4c8b8;
             background: #e8dfd1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+        }
+
+        .poster-card:hover img {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
         .poster-title {
@@ -193,7 +239,21 @@
         <div class="section">
             <h2>Reviews</h2>
             <div class="movie-grid">
-                
+                <!-- Example movie card with rating - remove this when adding real reviews 
+                <div class="movie-card">
+                    <h3>Example Movie</h3>
+                    <p class="year">2024</p>
+                    <div class="rating">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star half">★</span>
+                        <span class="star empty">★</span>
+                    </div>
+                    <p class="director">Director Name</p>
+                    <p class="note">Your review or thoughts about the movie go here. This example shows a 3.5 star rating.</p>
+                </div>
+                -->
             </div>
         </div>
 
@@ -202,7 +262,7 @@
         <div class="section">
             <h2>Watchlist</h2>
             <p class="intro">
-                Check out my <a href="https://letterboxd.com/ayush42/watchlist/" class="letterboxd-link" target="_blank">Letterboxd watchlist</a> for films I'm planning to watch.
+                Check out my <a href="https://letterboxd.com/yourusername/watchlist/" class="letterboxd-link" target="_blank">Letterboxd watchlist</a> for films I'm planning to watch.
             </p>
         </div>
     </div>
