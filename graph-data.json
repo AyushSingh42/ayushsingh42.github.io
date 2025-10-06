@@ -97,9 +97,6 @@
       "id": "Probability Mass Function.md"
     },
     {
-      "id": "Attachments/School/CS 374 - Algorithms & Models of Computation/Undecidability.md"
-    },
-    {
       "id": "Basque/Basque - September 2nd.md"
     },
     {
@@ -225,7 +222,7 @@
     },
     {
       "source": "Variational Autoencoders.md",
-      "target": "Autoencoders.md"
+      "target": "Variational Autoencoders.md"
     },
     {
       "source": "Variational Autoencoders.md",
@@ -252,12 +249,20 @@
       "target": "Gaussian Distribution.md"
     },
     {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Random Variable.md"
+    },
+    {
       "source": "Principal Component Analysis.md",
       "target": "Covariance.md"
     },
     {
       "source": "Latent Space.md",
       "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Classification Algorithms.md"
     },
     {
       "source": "Naive Bayes.md",
