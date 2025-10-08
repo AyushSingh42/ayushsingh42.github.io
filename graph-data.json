@@ -10,13 +10,28 @@
       "id": "Minkowski Distance.md"
     },
     {
+      "id": "Sigmoid Function.md"
+    },
+    {
+      "id": "Probability Density Function.md"
+    },
+    {
       "id": "K-Nearest Neighbor.md"
+    },
+    {
+      "id": "Neural Network.md"
+    },
+    {
+      "id": "Marginal Distribution.md"
     },
     {
       "id": "Dijkstra's Algorithm.md"
     },
     {
       "id": "Covariance.md"
+    },
+    {
+      "id": "Activation Function.md"
     },
     {
       "id": "Distance Algorithms.md"
@@ -43,9 +58,6 @@
       "id": "Bayes Rule.md"
     },
     {
-      "id": "README.md"
-    },
-    {
       "id": "Conditional Independence.md"
     },
     {
@@ -56,6 +68,9 @@
     },
     {
       "id": "Variational Autoencoders.md"
+    },
+    {
+      "id": "Joint Distribution.md"
     },
     {
       "id": "Types of Generative Models.md"
@@ -77,6 +92,9 @@
     },
     {
       "id": "Gaussian Distribution.md"
+    },
+    {
+      "id": "Probability Distribution.md"
     },
     {
       "id": "Naive Bayes.md"
@@ -145,6 +163,18 @@
       "target": "Manhattan Distance.md"
     },
     {
+      "source": "Sigmoid Function.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "Sigmoid Function.md",
+      "target": "Activation Function.md"
+    },
+    {
+      "source": "Sigmoid Function.md",
+      "target": "Neural Network.md"
+    },
+    {
       "source": "K-Nearest Neighbor.md",
       "target": "Classification Algorithms.md"
     },
@@ -163,6 +193,18 @@
     {
       "source": "K-Nearest Neighbor.md",
       "target": "Curse of Dimensionality.md"
+    },
+    {
+      "source": "Marginal Distribution.md",
+      "target": "Joint Distribution.md"
+    },
+    {
+      "source": "Marginal Distribution.md",
+      "target": "Probability Distribution.md"
+    },
+    {
+      "source": "Marginal Distribution.md",
+      "target": "Random Variable.md"
     },
     {
       "source": "Distance Algorithms.md",
@@ -205,6 +247,10 @@
       "target": "Logistic Regression.md"
     },
     {
+      "source": "Classification Algorithms.md",
+      "target": "Bayes Rule.md"
+    },
+    {
       "source": "K-means Clustering.md",
       "target": "Euclidean Distance.md"
     },
@@ -217,6 +263,18 @@
       "target": "Bayes Rule.md"
     },
     {
+      "source": "Logistic Regression.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Naive Bayes.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Maximum A Posteriori.md"
+    },
+    {
       "source": "Variational Autoencoders.md",
       "target": "Latent Space.md"
     },
@@ -226,11 +284,27 @@
     },
     {
       "source": "Variational Autoencoders.md",
+      "target": "Principal Component Analysis.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
       "target": "Gaussian Distribution.md"
     },
     {
       "source": "Variational Autoencoders.md",
       "target": "KL divergence.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Marginal Distribution.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Joint Distribution.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Bayes Rule.md"
     },
     {
       "source": "Types of Generative Models.md",
@@ -251,6 +325,10 @@
     {
       "source": "Gaussian Naive Bayes.md",
       "target": "Random Variable.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Probability Density Function.md"
     },
     {
       "source": "Principal Component Analysis.md",
