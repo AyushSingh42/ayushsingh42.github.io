@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Garamond', 'Georgia', serif;
+            font-family: 'Georgia', 'Garamond', serif;
             background: #f7f3ed;
             color: #2a2420;
             line-height: 1.8;
@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -80,123 +80,141 @@
             text-align: center;
         }
 
-        .movie-grid {
+        .movie-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
             margin-top: 30px;
         }
 
         .movie-card {
-            background: rgba(232, 223, 209, 0.3);
-            padding: 25px;
-            border: 1px solid #d4c8b8;
-            border-radius: 4px;
-            transition: background 0.3s ease;
+            background: rgba(255, 250, 245, 0.6);
+            padding: 0;
+            border: 2px solid #e8dfd1;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(107, 93, 82, 0.12);
+        }
+
+        .movie-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #d4a574 0%, #c4956f 50%, #d4a574 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .movie-content {
+            padding: 28px;
         }
 
         .movie-card:hover {
-            background: rgba(232, 223, 209, 0.5);
+            box-shadow: 0 12px 40px rgba(107, 93, 82, 0.2);
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .movie-card:hover::before {
+            animation-duration: 1.5s;
+        }
+
+        .movie-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
 
         .movie-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
             color: #2a2420;
-            margin-bottom: 8px;
+            margin: 0;
+            letter-spacing: 0.4px;
+            transition: all 0.3s ease;
+            line-height: 1.3;
+        }
+
+        .movie-card:hover h3 {
+            color: #d4a574;
+            transform: translateX(4px);
         }
 
         .movie-card .year {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #6b5d52;
-            margin-bottom: 12px;
-        }
-
-        .movie-card .director {
-            font-size: 0.95rem;
-            color: #4a3f36;
-            font-style: italic;
-            margin-bottom: 12px;
-        }
-
-        .movie-card .note {
-            font-size: 0.95rem;
-            color: #6b5d52;
-            line-height: 1.6;
+            font-weight: 400;
         }
 
         .rating {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             color: #d4a574;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-        }
-
-        .rating .star {
-            display: inline-block;
-            position: relative;
-        }
-
-        .rating .star.filled {
-            color: #d4a574;
-        }
-
-        .rating .star.half {
-            position: relative;
-            color: #d4c8b8;
-        }
-
-        .rating .star.half::before {
-            content: '★';
-            position: absolute;
-            left: 0;
-            color: #d4a574;
-            width: 50%;
-            overflow: hidden;
-        }
-
-        .rating .star.empty {
-            color: #d4c8b8;
-        }
-
-        .top-four-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .poster-card {
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .poster-card img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 2/3;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 1px solid #d4c8b8;
-            background: #e8dfd1;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 3px;
+            margin-bottom: 14px;
             display: block;
+            filter: drop-shadow(0 2px 4px rgba(212, 165, 116, 0.3));
         }
 
-        .poster-card:hover img {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        .movie-card:hover .rating {
+            animation: bounce 0.6s ease;
         }
 
-        .poster-title {
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .movie-card .director {
+            font-size: 1rem;
+            color: #6b5d52;
+            font-style: italic;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .movie-card .note {
+            font-size: 1rem;
+            color: #4a3f36;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .movie-card .review-link {
             font-size: 0.95rem;
-            color: #2a2420;
-            margin-top: 12px;
-            font-weight: 500;
+            color: #4a3f36;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 6px;
+        }
+
+        .movie-card .review-link:hover {
+            background: rgba(212, 165, 116, 0.2);
+            border-bottom-color: #d4a574;
+            transform: translateX(4px);
         }
 
         hr {
@@ -215,12 +233,12 @@
                 font-size: 1.8rem;
             }
 
-            .movie-grid {
-                grid-template-columns: 1fr;
+            .movie-card {
+                padding-left: 15px;
             }
 
-            .top-four-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .movie-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -239,22 +257,18 @@
 
         <div class="section">
             <h2>Reviews</h2>
-            <div class="movie-grid">
-                <!-- Example movie card with rating - remove this when adding real reviews 
+            <div class="movie-list">
                 <div class="movie-card">
-                    <h3>Example Movie</h3>
-                    <p class="year">2024</p>
-                    <div class="rating">
-                        <span class="star filled">★</span>
-                        <span class="star filled">★</span>
-                        <span class="star filled">★</span>
-                        <span class="star half">★</span>
-                        <span class="star empty">★</span>
+                    <div class="movie-content">
+                        <div class="movie-header">
+                            <h3>Past Lives</h3>
+                            <span class="year">2024</span>
+                        </div>
+                        <div class="rating">★★★★★</div>
+                        <p class="director">Celine Song</p>
+                        <a href="https://open.substack.com/pub/ayushsingh42/p/past-lives?r=5zrvgw&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" class="review-link" target="_blank">read review →</a>
                     </div>
-                    <p class="director">Director Name</p>
-                    <p class="note">Your review or thoughts about the movie go here. This example shows a 3.5 star rating.</p>
                 </div>
-                -->
             </div>
         </div>
 
@@ -263,7 +277,7 @@
         <div class="section">
             <h2>Watchlist</h2>
             <p class="intro">
-                Check out my <a href="https://letterboxd.com/yourusername/watchlist/" class="letterboxd-link" target="_blank">Letterboxd watchlist</a> for films I'm planning to watch.
+                Check out my <a href="https://letterboxd.com/ayush42/watchlist/" class="letterboxd-link" target="_blank">Letterboxd watchlist</a> for films I'm planning to watch.
             </p>
         </div>
     </div>
