@@ -31,13 +31,13 @@
       "id": "Covariance.md"
     },
     {
+      "id": "Jensen's Inequality.md"
+    },
+    {
       "id": "Activation Function.md"
     },
     {
       "id": "Distance Algorithms.md"
-    },
-    {
-      "id": "Hyperparameters.md"
     },
     {
       "id": "Manhattan Distance.md"
@@ -46,10 +46,10 @@
       "id": "Autoencoders.md"
     },
     {
-      "id": "Curse of Dimensionality.md"
+      "id": "Classification Algorithms.md"
     },
     {
-      "id": "Classification Algorithms.md"
+      "id": "Special Distributions.md"
     },
     {
       "id": "K-means Clustering.md"
@@ -82,6 +82,9 @@
       "id": "Types of Machine Learning.md"
     },
     {
+      "id": "Expectation.md"
+    },
+    {
       "id": "Gaussian Naive Bayes.md"
     },
     {
@@ -94,6 +97,9 @@
       "id": "Gaussian Distribution.md"
     },
     {
+      "id": "Loss Function.md"
+    },
+    {
       "id": "Probability Distribution.md"
     },
     {
@@ -104,6 +110,9 @@
     },
     {
       "id": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "id": "N-gram Models.md"
     },
     {
       "id": "Perceptron.md"
@@ -187,14 +196,6 @@
       "target": "Minkowski Distance.md"
     },
     {
-      "source": "K-Nearest Neighbor.md",
-      "target": "Hyperparameters.md"
-    },
-    {
-      "source": "K-Nearest Neighbor.md",
-      "target": "Curse of Dimensionality.md"
-    },
-    {
       "source": "Marginal Distribution.md",
       "target": "Joint Distribution.md"
     },
@@ -205,6 +206,14 @@
     {
       "source": "Marginal Distribution.md",
       "target": "Random Variable.md"
+    },
+    {
+      "source": "Activation Function.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Activation Function.md",
+      "target": "Sigmoid Function.md"
     },
     {
       "source": "Distance Algorithms.md",
@@ -251,6 +260,10 @@
       "target": "Bayes Rule.md"
     },
     {
+      "source": "Special Distributions.md",
+      "target": "Random Variable.md"
+    },
+    {
       "source": "K-means Clustering.md",
       "target": "Euclidean Distance.md"
     },
@@ -284,15 +297,15 @@
     },
     {
       "source": "Variational Autoencoders.md",
-      "target": "Principal Component Analysis.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
       "target": "Gaussian Distribution.md"
     },
     {
       "source": "Variational Autoencoders.md",
       "target": "KL divergence.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Loss Function.md"
     },
     {
       "source": "Variational Autoencoders.md",
@@ -313,6 +326,18 @@
     {
       "source": "Types of Machine Learning.md",
       "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Probability Density Function.md"
     },
     {
       "source": "Gaussian Naive Bayes.md",
@@ -361,6 +386,18 @@
     {
       "source": "Maximum Likelihood Estimation.md",
       "target": "Random Variable.md"
+    },
+    {
+      "source": "N-gram Models.md",
+      "target": "Words.md"
+    },
+    {
+      "source": "N-gram Models.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "N-gram Models.md",
+      "target": "Naive Bayes.md"
     },
     {
       "source": "Probability Mass Function.md",
