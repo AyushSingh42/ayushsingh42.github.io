@@ -1,40 +1,13 @@
 {
   "nodes": [
     {
-      "id": "KL divergence.md"
-    },
-    {
-      "id": "Bayes Rule.md"
-    },
-    {
       "id": "Cumulative Distribution Function.md"
     },
     {
-      "id": "Activation Function.md"
+      "id": "Cross-Entropy.md"
     },
     {
-      "id": "Euclidean Distance.md"
-    },
-    {
-      "id": "Types of Generative Models.md"
-    },
-    {
-      "id": "Joint Distribution.md"
-    },
-    {
-      "id": "Probability Distribution.md"
-    },
-    {
-      "id": "Loss Function.md"
-    },
-    {
-      "id": "Words.md"
-    },
-    {
-      "id": "Support Vector Machine.md"
-    },
-    {
-      "id": "Types of Machine Learning.md"
+      "id": "Random Variable.md"
     },
     {
       "id": "Minkowski Distance.md"
@@ -43,121 +16,166 @@
       "id": "Sigmoid Function.md"
     },
     {
-      "id": "Gaussian Distribution.md"
-    },
-    {
-      "id": "Latent Space.md"
-    },
-    {
-      "id": "Perceptron.md"
-    },
-    {
-      "id": "Jensen's Inequality.md"
-    },
-    {
-      "id": "K-means Clustering.md"
-    },
-    {
-      "id": "Manhattan Distance.md"
-    },
-    {
-      "id": "Principal Component Analysis.md"
+      "id": "Probability Density Function.md"
     },
     {
       "id": "K-Nearest Neighbor.md"
     },
     {
-      "id": "Logistic Regression.md"
-    },
-    {
       "id": "Neural Network.md"
-    },
-    {
-      "id": "Probability Mass Function.md"
-    },
-    {
-      "id": "Dijkstra's Algorithm.md"
-    },
-    {
-      "id": "Maximum A Posteriori.md"
     },
     {
       "id": "Marginal Distribution.md"
     },
     {
-      "id": "Naive Bayes.md"
-    },
-    {
-      "id": "Autoencoders.md"
-    },
-    {
-      "id": "Linear Regression.md"
-    },
-    {
-      "id": "N-gram Models.md"
-    },
-    {
-      "id": "Expectation.md"
-    },
-    {
-      "id": "Distance Algorithms.md"
-    },
-    {
-      "id": "Variational Autoencoders.md"
-    },
-    {
-      "id": "Probability Density Function.md"
-    },
-    {
-      "id": "Special Distributions.md"
-    },
-    {
-      "id": "Random Variable.md"
-    },
-    {
-      "id": "Gaussian Naive Bayes.md"
+      "id": "Dijkstra's Algorithm.md"
     },
     {
       "id": "Covariance.md"
     },
     {
-      "id": "Conditional Independence.md"
+      "id": "Jensen's Inequality.md"
+    },
+    {
+      "id": "Activation Function.md"
+    },
+    {
+      "id": "Distance Algorithms.md"
+    },
+    {
+      "id": "Manhattan Distance.md"
+    },
+    {
+      "id": "Autoencoders.md"
     },
     {
       "id": "Classification Algorithms.md"
     },
     {
+      "id": "Evidence Lower Bound.md"
+    },
+    {
+      "id": "Gradient Descent.md"
+    },
+    {
+      "id": "Special Distributions.md"
+    },
+    {
+      "id": "K-means Clustering.md"
+    },
+    {
+      "id": "Bayes Rule.md"
+    },
+    {
+      "id": "Conditional Independence.md"
+    },
+    {
+      "id": "Newton's Method.md"
+    },
+    {
+      "id": "Maximum A Posteriori.md"
+    },
+    {
+      "id": "Logistic Regression.md"
+    },
+    {
+      "id": "Support Vector Machine.md"
+    },
+    {
+      "id": "Variational Autoencoders.md"
+    },
+    {
+      "id": "Joint Distribution.md"
+    },
+    {
+      "id": "Types of Generative Models.md"
+    },
+    {
+      "id": "Words.md"
+    },
+    {
+      "id": "Types of Machine Learning.md"
+    },
+    {
+      "id": "Linear Regression.md"
+    },
+    {
+      "id": "Expectation.md"
+    },
+    {
+      "id": "Gaussian Naive Bayes.md"
+    },
+    {
+      "id": "Principal Component Analysis.md"
+    },
+    {
+      "id": "Latent Space.md"
+    },
+    {
+      "id": "Gaussian Distribution.md"
+    },
+    {
+      "id": "Loss Function.md"
+    },
+    {
+      "id": "Probability Distribution.md"
+    },
+    {
+      "id": "Naive Bayes.md"
+    },
+    {
+      "id": "Entropy.md"
+    },
+    {
+      "id": "Euclidean Distance.md"
+    },
+    {
       "id": "Maximum Likelihood Estimation.md"
     },
     {
-      "id": "Basque/BASQ 401 - Beginner's Basque.md"
+      "id": "Diffusion Models.md"
     },
     {
-      "id": "Basque/Basque - September 16th.md"
+      "id": "N-gram Models.md"
     },
     {
-      "id": "Basque/Basque - September 9th.md"
+      "id": "Perceptron.md"
+    },
+    {
+      "id": "KL divergence.md"
+    },
+    {
+      "id": "Probability Mass Function.md"
     },
     {
       "id": "Basque/Basque - September 2nd.md"
     },
     {
+      "id": "Basque/Basque - September 9th.md"
+    },
+    {
       "id": "Basque/Basque - September 18th.md"
     },
     {
-      "id": "Basque/Basque - September 4th.md"
+      "id": "Basque/Basque - September 11th.md"
     },
     {
-      "id": "Basque/Basque - September 30th.md"
-    },
-    {
-      "id": "Basque/Basque - August 28th.md"
+      "id": "Basque/Basque - September 16th.md"
     },
     {
       "id": "Basque/Basque - August 26th.md"
     },
     {
-      "id": "Basque/Basque - September 11th.md"
+      "id": "Basque/Basque - September 30th.md"
+    },
+    {
+      "id": "Basque/Basque - September 4th.md"
+    },
+    {
+      "id": "Basque/BASQ 401 - Beginner's Basque.md"
+    },
+    {
+      "id": "Basque/Basque - August 28th.md"
     }
   ],
   "links": [
@@ -170,24 +188,12 @@
       "target": "Probability Mass Function.md"
     },
     {
-      "source": "Activation Function.md",
-      "target": "Neural Network.md"
+      "source": "Cross-Entropy.md",
+      "target": "Cross-Entropy.md"
     },
     {
-      "source": "Activation Function.md",
-      "target": "Sigmoid Function.md"
-    },
-    {
-      "source": "Types of Generative Models.md",
-      "target": "Variational Autoencoders.md"
-    },
-    {
-      "source": "Support Vector Machine.md",
-      "target": "Classification Algorithms.md"
-    },
-    {
-      "source": "Types of Machine Learning.md",
-      "target": "Classification Algorithms.md"
+      "source": "Cross-Entropy.md",
+      "target": "Expectation.md"
     },
     {
       "source": "Minkowski Distance.md",
@@ -210,18 +216,6 @@
       "target": "Neural Network.md"
     },
     {
-      "source": "Latent Space.md",
-      "target": "Variational Autoencoders.md"
-    },
-    {
-      "source": "K-means Clustering.md",
-      "target": "Euclidean Distance.md"
-    },
-    {
-      "source": "Principal Component Analysis.md",
-      "target": "Covariance.md"
-    },
-    {
       "source": "K-Nearest Neighbor.md",
       "target": "Classification Algorithms.md"
     },
@@ -234,34 +228,6 @@
       "target": "Minkowski Distance.md"
     },
     {
-      "source": "Logistic Regression.md",
-      "target": "Classification Algorithms.md"
-    },
-    {
-      "source": "Logistic Regression.md",
-      "target": "Naive Bayes.md"
-    },
-    {
-      "source": "Logistic Regression.md",
-      "target": "Sigmoid Function.md"
-    },
-    {
-      "source": "Logistic Regression.md",
-      "target": "Maximum A Posteriori.md"
-    },
-    {
-      "source": "Probability Mass Function.md",
-      "target": "Random Variable.md"
-    },
-    {
-      "source": "Maximum A Posteriori.md",
-      "target": "Maximum Likelihood Estimation.md"
-    },
-    {
-      "source": "Maximum A Posteriori.md",
-      "target": "Bayes Rule.md"
-    },
-    {
       "source": "Marginal Distribution.md",
       "target": "Joint Distribution.md"
     },
@@ -272,6 +238,194 @@
     {
       "source": "Marginal Distribution.md",
       "target": "Random Variable.md"
+    },
+    {
+      "source": "Activation Function.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Activation Function.md",
+      "target": "Sigmoid Function.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Dijkstra's Algorithm.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Manhattan Distance.md"
+    },
+    {
+      "source": "Autoencoders.md",
+      "target": "Principal Component Analysis.md"
+    },
+    {
+      "source": "Autoencoders.md",
+      "target": "Latent Space.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "K-Nearest Neighbor.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Perceptron.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Gaussian Naive Bayes.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Gaussian Naive Bayes.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Special Distributions.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Special Distributions.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "K-means Clustering.md",
+      "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "Maximum A Posteriori.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Maximum A Posteriori.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Gaussian Naive Bayes.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Sigmoid Function.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Gradient Descent.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Newton's Method.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Maximum A Posteriori.md"
+    },
+    {
+      "source": "Support Vector Machine.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Latent Space.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Loss Function.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Evidence Lower Bound.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Joint Distribution.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Jensen's Inequality.md"
+    },
+    {
+      "source": "Types of Generative Models.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Types of Generative Models.md",
+      "target": "Diffusion Models.md"
+    },
+    {
+      "source": "Types of Machine Learning.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Linear Regression.md",
+      "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Linear Regression.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Probability Density Function.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Gaussian Naive Bayes.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Probability Density Function.md"
+    },
+    {
+      "source": "Principal Component Analysis.md",
+      "target": "Covariance.md"
+    },
+    {
+      "source": "Latent Space.md",
+      "target": "Variational Autoencoders.md"
     },
     {
       "source": "Naive Bayes.md",
@@ -294,20 +448,36 @@
       "target": "Bayes Rule.md"
     },
     {
-      "source": "Autoencoders.md",
-      "target": "Principal Component Analysis.md"
+      "source": "Entropy.md",
+      "target": "Expectation.md"
     },
     {
-      "source": "Autoencoders.md",
+      "source": "Maximum Likelihood Estimation.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Diffusion Models.md",
       "target": "Latent Space.md"
     },
     {
-      "source": "Linear Regression.md",
+      "source": "Diffusion Models.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Diffusion Models.md",
       "target": "Gaussian Distribution.md"
     },
     {
-      "source": "Linear Regression.md",
-      "target": "Maximum Likelihood Estimation.md"
+      "source": "Diffusion Models.md",
+      "target": "Evidence Lower Bound.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Loss Function.md"
     },
     {
       "source": "N-gram Models.md",
@@ -319,114 +489,22 @@
     },
     {
       "source": "N-gram Models.md",
-      "target": "Naive Bayes.md"
-    },
-    {
-      "source": "Expectation.md",
-      "target": "Random Variable.md"
-    },
-    {
-      "source": "Expectation.md",
-      "target": "Probability Mass Function.md"
-    },
-    {
-      "source": "Expectation.md",
-      "target": "Probability Density Function.md"
-    },
-    {
-      "source": "Distance Algorithms.md",
-      "target": "Dijkstra's Algorithm.md"
-    },
-    {
-      "source": "Distance Algorithms.md",
-      "target": "Euclidean Distance.md"
-    },
-    {
-      "source": "Distance Algorithms.md",
-      "target": "Manhattan Distance.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "Latent Space.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "Autoencoders.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "Gaussian Distribution.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "KL divergence.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "Loss Function.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "Marginal Distribution.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "Joint Distribution.md"
-    },
-    {
-      "source": "Variational Autoencoders.md",
-      "target": "Bayes Rule.md"
-    },
-    {
-      "source": "Special Distributions.md",
-      "target": "Random Variable.md"
-    },
-    {
-      "source": "Special Distributions.md",
-      "target": "Probability Mass Function.md"
-    },
-    {
-      "source": "Gaussian Naive Bayes.md",
-      "target": "Naive Bayes.md"
-    },
-    {
-      "source": "Gaussian Naive Bayes.md",
-      "target": "Gaussian Distribution.md"
-    },
-    {
-      "source": "Gaussian Naive Bayes.md",
-      "target": "Random Variable.md"
-    },
-    {
-      "source": "Gaussian Naive Bayes.md",
-      "target": "Probability Density Function.md"
-    },
-    {
-      "source": "Classification Algorithms.md",
-      "target": "K-Nearest Neighbor.md"
-    },
-    {
-      "source": "Classification Algorithms.md",
-      "target": "Perceptron.md"
-    },
-    {
-      "source": "Classification Algorithms.md",
-      "target": "Naive Bayes.md"
-    },
-    {
-      "source": "Classification Algorithms.md",
       "target": "Gaussian Naive Bayes.md"
     },
     {
-      "source": "Classification Algorithms.md",
-      "target": "Logistic Regression.md"
+      "source": "KL divergence.md",
+      "target": "Expectation.md"
     },
     {
-      "source": "Classification Algorithms.md",
-      "target": "Bayes Rule.md"
+      "source": "KL divergence.md",
+      "target": "Cross-Entropy.md"
     },
     {
-      "source": "Maximum Likelihood Estimation.md",
+      "source": "KL divergence.md",
+      "target": "Cross-Entropy.md"
+    },
+    {
+      "source": "Probability Mass Function.md",
       "target": "Random Variable.md"
     },
     {
