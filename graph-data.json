@@ -31,6 +31,9 @@
       "id": "Dijkstra's Algorithm.md"
     },
     {
+      "id": "Softmax.md"
+    },
+    {
       "id": "Covariance.md"
     },
     {
@@ -137,6 +140,9 @@
     },
     {
       "id": "Diffusion Models.md"
+    },
+    {
+      "id": "Guidance of Diffusion Models.md"
     },
     {
       "id": "N-gram Models.md"
@@ -348,7 +354,7 @@
     },
     {
       "source": "Variational Autoencoders.md",
-      "target": "Autoencoders.md"
+      "target": "Variational Autoencoders.md"
     },
     {
       "source": "Variational Autoencoders.md",
@@ -481,6 +487,30 @@
     {
       "source": "Diffusion Models.md",
       "target": "Gaussian Distribution.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Diffusion Models.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Softmax.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Cross-Entropy.md"
     },
     {
       "source": "N-gram Models.md",
