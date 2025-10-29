@@ -49,6 +49,9 @@
       "id": "Autoencoders.md"
     },
     {
+      "id": "Markov Chain.md"
+    },
+    {
       "id": "Classification Algorithms.md"
     },
     {
@@ -277,7 +280,7 @@
     },
     {
       "source": "Classification Algorithms.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "Classification Algorithms.md",
@@ -317,7 +320,7 @@
     },
     {
       "source": "Logistic Regression.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "Logistic Regression.md",
@@ -345,7 +348,7 @@
     },
     {
       "source": "Variational Autoencoders.md",
-      "target": "Variational Autoencoders.md"
+      "target": "Autoencoders.md"
     },
     {
       "source": "Variational Autoencoders.md",
@@ -405,7 +408,7 @@
     },
     {
       "source": "Gaussian Naive Bayes.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "Gaussian Naive Bayes.md",
@@ -473,11 +476,11 @@
     },
     {
       "source": "Diffusion Models.md",
-      "target": "Gaussian Distribution.md"
+      "target": "Markov Chain.md"
     },
     {
       "source": "Diffusion Models.md",
-      "target": "Loss Function.md"
+      "target": "Gaussian Distribution.md"
     },
     {
       "source": "N-gram Models.md",
@@ -489,7 +492,7 @@
     },
     {
       "source": "N-gram Models.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "KL divergence.md",
