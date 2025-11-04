@@ -16,6 +16,9 @@
       "id": "Instruction Tuning.md"
     },
     {
+      "id": "Conditional Random Fields.md"
+    },
+    {
       "id": "Sigmoid Function.md"
     },
     {
@@ -49,7 +52,22 @@
       "id": "Activation Function.md"
     },
     {
+      "id": "Recurrent Neural Networks.md"
+    },
+    {
+      "id": "Transformers.md"
+    },
+    {
+      "id": "Morphology.md"
+    },
+    {
       "id": "Distance Algorithms.md"
+    },
+    {
+      "id": "Large Language Model.md"
+    },
+    {
+      "id": "Variance.md"
     },
     {
       "id": "Manhattan Distance.md"
@@ -68,6 +86,12 @@
     },
     {
       "id": "Evidence Lower Bound.md"
+    },
+    {
+      "id": "Named Entity Recognition.md"
+    },
+    {
+      "id": "Recursion.md"
     },
     {
       "id": "Gradient Descent.md"
@@ -94,6 +118,9 @@
       "id": "Preference Training.md"
     },
     {
+      "id": "Hidden Markov Models.md"
+    },
+    {
       "id": "Conditional Independence.md"
     },
     {
@@ -101,6 +128,9 @@
     },
     {
       "id": "Maximum A Posteriori.md"
+    },
+    {
+      "id": "Part-of-speech Tagging.md"
     },
     {
       "id": "Logistic Regression.md"
@@ -133,6 +163,9 @@
       "id": "Expectation.md"
     },
     {
+      "id": "Reward Model.md"
+    },
+    {
       "id": "Gaussian Naive Bayes.md"
     },
     {
@@ -151,6 +184,9 @@
       "id": "Probability Distribution.md"
     },
     {
+      "id": "Viterbi Algorithm.md"
+    },
+    {
       "id": "Naive Bayes.md"
     },
     {
@@ -158,6 +194,9 @@
     },
     {
       "id": "Unsupervised Learning.md"
+    },
+    {
+      "id": "Dynamic Programming.md"
     },
     {
       "id": "Euclidean Distance.md"
@@ -241,6 +280,10 @@
     },
     {
       "source": "Instruction Tuning.md",
+      "target": "Large Language Model.md"
+    },
+    {
+      "source": "Instruction Tuning.md",
       "target": "Supervised Learning.md"
     },
     {
@@ -286,6 +329,10 @@
     {
       "source": "Marginal Distribution.md",
       "target": "Random Variable.md"
+    },
+    {
+      "source": "Finetuning.md",
+      "target": "Large Language Model.md"
     },
     {
       "source": "Finetuning.md",
@@ -364,8 +411,28 @@
       "target": "Bayes Rule.md"
     },
     {
+      "source": "Named Entity Recognition.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Conditional Random Fields.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Recurrent Neural Networks.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Transformers.md"
+    },
+    {
       "source": "Direct Preference Optimization.md",
       "target": "Preference Training.md"
+    },
+    {
+      "source": "Direct Preference Optimization.md",
+      "target": "Reward Model.md"
     },
     {
       "source": "Direct Preference Optimization.md",
@@ -386,6 +453,10 @@
     {
       "source": "K-means Clustering.md",
       "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "RL for LLM Alignment.md",
+      "target": "Large Language Model.md"
     },
     {
       "source": "RL for LLM Alignment.md",
@@ -420,12 +491,52 @@
       "target": "Expectation.md"
     },
     {
+      "source": "Preference Training.md",
+      "target": "Reward Model.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Markov Chain.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Part-of-speech Tagging.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Viterbi Algorithm.md"
+    },
+    {
       "source": "Maximum A Posteriori.md",
       "target": "Maximum Likelihood Estimation.md"
     },
     {
       "source": "Maximum A Posteriori.md",
       "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Words.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Morphology.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Conditional Random Fields.md"
     },
     {
       "source": "Logistic Regression.md",
@@ -458,6 +569,10 @@
     {
       "source": "Expected Test Error.md",
       "target": "Expectation.md"
+    },
+    {
+      "source": "Expected Test Error.md",
+      "target": "Variance.md"
     },
     {
       "source": "Support Vector Machine.md",
@@ -501,7 +616,7 @@
     },
     {
       "source": "Types of Generative Models.md",
-      "target": "Diffusion Models.md"
+      "target": "Guidance of Diffusion Models.md"
     },
     {
       "source": "Types of Machine Learning.md",
@@ -550,6 +665,18 @@
     {
       "source": "Latent Space.md",
       "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Dynamic Programming.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Recursion.md"
     },
     {
       "source": "Naive Bayes.md",
@@ -609,7 +736,7 @@
     },
     {
       "source": "Guidance of Diffusion Models.md",
-      "target": "Diffusion Models.md"
+      "target": "Guidance of Diffusion Models.md"
     },
     {
       "source": "Guidance of Diffusion Models.md",
