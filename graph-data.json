@@ -19,6 +19,9 @@
       "id": "Graph.md"
     },
     {
+      "id": "Greedy Algorithms.md"
+    },
+    {
       "id": "Conditional Random Fields.md"
     },
     {
@@ -70,6 +73,9 @@
       "id": "Distance Algorithms.md"
     },
     {
+      "id": "Attention.md"
+    },
+    {
       "id": "Gradient Flow.md"
     },
     {
@@ -86,6 +92,9 @@
     },
     {
       "id": "Autoencoders.md"
+    },
+    {
+      "id": "Kernel Function.md"
     },
     {
       "id": "Markov Chain.md"
@@ -131,6 +140,9 @@
     },
     {
       "id": "Hidden Markov Models.md"
+    },
+    {
+      "id": "Kernel Trick.md"
     },
     {
       "id": "Conditional Independence.md"
@@ -199,6 +211,9 @@
       "id": "Naive Bayes.md"
     },
     {
+      "id": "Regular Expressions.md"
+    },
+    {
       "id": "Entropy.md"
     },
     {
@@ -221,6 +236,12 @@
     },
     {
       "id": "Diffusion Models.md"
+    },
+    {
+      "id": "Finite State Automata.md"
+    },
+    {
+      "id": "Decision Trees.md"
     },
     {
       "id": "Guidance of Diffusion Models.md"
@@ -412,6 +433,14 @@
       "target": "Sigmoid Function.md"
     },
     {
+      "source": "Transformers.md",
+      "target": "Attention.md"
+    },
+    {
+      "source": "Transformers.md",
+      "target": "Neural Network.md"
+    },
+    {
       "source": "Distance Algorithms.md",
       "target": "Dijkstra's Algorithm.md"
     },
@@ -578,6 +607,14 @@
     {
       "source": "Hidden Markov Models.md",
       "target": "Viterbi Algorithm.md"
+    },
+    {
+      "source": "Kernel Trick.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Kernel Trick.md",
+      "target": "Kernel Function.md"
     },
     {
       "source": "Maximum A Posteriori.md",
@@ -772,6 +809,10 @@
       "target": "Bayes Rule.md"
     },
     {
+      "source": "Regular Expressions.md",
+      "target": "Finite State Automata.md"
+    },
+    {
       "source": "Entropy.md",
       "target": "Expectation.md"
     },
@@ -782,6 +823,10 @@
     {
       "source": "Stochastic Differential Equations.md",
       "target": "Gradient Flow.md"
+    },
+    {
+      "source": "Stochastic Differential Equations.md",
+      "target": "Diffusion Models.md"
     },
     {
       "source": "Maximum Likelihood Estimation.md",
@@ -814,6 +859,26 @@
     {
       "source": "Diffusion Models.md",
       "target": "Neural Network.md"
+    },
+    {
+      "source": "Finite State Automata.md",
+      "target": "Regular Expressions.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Greedy Algorithms.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Special Distributions.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Cross-Entropy.md"
     },
     {
       "source": "Guidance of Diffusion Models.md",
@@ -905,7 +970,7 @@
     },
     {
       "source": "Basque/Urtaroak.md",
-      "target": "Basque/BASQ 401 - Beginner's Basque.md"
+      "target": "Basque/Auxiliary Verbs in Basque.md"
     }
   ]
 }
