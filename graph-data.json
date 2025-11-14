@@ -16,6 +16,15 @@
       "id": "Instruction Tuning.md"
     },
     {
+      "id": "Graph.md"
+    },
+    {
+      "id": "Greedy Algorithms.md"
+    },
+    {
+      "id": "Conditional Random Fields.md"
+    },
+    {
       "id": "Sigmoid Function.md"
     },
     {
@@ -49,13 +58,43 @@
       "id": "Activation Function.md"
     },
     {
+      "id": "Lekuak.md"
+    },
+    {
+      "id": "Recurrent Neural Networks.md"
+    },
+    {
+      "id": "Transformers.md"
+    },
+    {
+      "id": "Morphology.md"
+    },
+    {
       "id": "Distance Algorithms.md"
+    },
+    {
+      "id": "Attention.md"
+    },
+    {
+      "id": "Gradient Flow.md"
+    },
+    {
+      "id": "Large Language Model.md"
+    },
+    {
+      "id": "Variance.md"
     },
     {
       "id": "Manhattan Distance.md"
     },
     {
+      "id": "Egon.md"
+    },
+    {
       "id": "Autoencoders.md"
+    },
+    {
+      "id": "Kernel Function.md"
     },
     {
       "id": "Markov Chain.md"
@@ -68,6 +107,12 @@
     },
     {
       "id": "Evidence Lower Bound.md"
+    },
+    {
+      "id": "Named Entity Recognition.md"
+    },
+    {
+      "id": "Recursion.md"
     },
     {
       "id": "Gradient Descent.md"
@@ -94,6 +139,12 @@
       "id": "Preference Training.md"
     },
     {
+      "id": "Hidden Markov Models.md"
+    },
+    {
+      "id": "Kernel Trick.md"
+    },
+    {
       "id": "Conditional Independence.md"
     },
     {
@@ -101,6 +152,9 @@
     },
     {
       "id": "Maximum A Posteriori.md"
+    },
+    {
+      "id": "Part-of-speech Tagging.md"
     },
     {
       "id": "Logistic Regression.md"
@@ -133,6 +187,9 @@
       "id": "Expectation.md"
     },
     {
+      "id": "Reward Model.md"
+    },
+    {
       "id": "Gaussian Naive Bayes.md"
     },
     {
@@ -148,10 +205,13 @@
       "id": "Loss Function.md"
     },
     {
-      "id": "Probability Distribution.md"
+      "id": "Viterbi Algorithm.md"
     },
     {
       "id": "Naive Bayes.md"
+    },
+    {
+      "id": "Regular Expressions.md"
     },
     {
       "id": "Entropy.md"
@@ -160,13 +220,28 @@
       "id": "Unsupervised Learning.md"
     },
     {
+      "id": "Dynamic Programming.md"
+    },
+    {
+      "id": "Stochastic Differential Equations.md"
+    },
+    {
       "id": "Euclidean Distance.md"
     },
     {
       "id": "Maximum Likelihood Estimation.md"
     },
     {
+      "id": "Ordinary Differential Equations.md"
+    },
+    {
       "id": "Diffusion Models.md"
+    },
+    {
+      "id": "Finite State Automata.md"
+    },
+    {
+      "id": "Decision Trees.md"
     },
     {
       "id": "Guidance of Diffusion Models.md"
@@ -184,10 +259,16 @@
       "id": "Probability Mass Function.md"
     },
     {
+      "id": "Untitled.md"
+    },
+    {
       "id": "Basque/Basque - September 2nd.md"
     },
     {
       "id": "Basque/Basque - September 9th.md"
+    },
+    {
+      "id": "Basque/Aisia.md"
     },
     {
       "id": "Basque/Basque - September 18th.md"
@@ -205,10 +286,22 @@
       "id": "Basque/Basque - September 30th.md"
     },
     {
+      "id": "Basque/Auxiliary Verbs in Basque.md"
+    },
+    {
       "id": "Basque/Basque - September 4th.md"
     },
     {
       "id": "Basque/BASQ 401 - Beginner's Basque.md"
+    },
+    {
+      "id": "Basque/Basque Question Words.md"
+    },
+    {
+      "id": "Basque/Etorkizuna.md"
+    },
+    {
+      "id": "Basque/Urtaroak.md"
     },
     {
       "id": "Basque/Basque - August 28th.md"
@@ -225,7 +318,7 @@
     },
     {
       "source": "Cross-Entropy.md",
-      "target": "Entropy.md"
+      "target": "Cross-Entropy.md"
     },
     {
       "source": "Cross-Entropy.md",
@@ -241,15 +334,39 @@
     },
     {
       "source": "Instruction Tuning.md",
+      "target": "Large Language Model.md"
+    },
+    {
+      "source": "Instruction Tuning.md",
       "target": "Supervised Learning.md"
     },
     {
       "source": "Instruction Tuning.md",
-      "target": "Words.md"
+      "target": "Basque/Basque Question Words.md"
     },
     {
       "source": "Instruction Tuning.md",
       "target": "Cross-Entropy.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Graph.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Viterbi Algorithm.md"
     },
     {
       "source": "Sigmoid Function.md",
@@ -281,11 +398,11 @@
     },
     {
       "source": "Marginal Distribution.md",
-      "target": "Probability Distribution.md"
+      "target": "Random Variable.md"
     },
     {
-      "source": "Marginal Distribution.md",
-      "target": "Random Variable.md"
+      "source": "Finetuning.md",
+      "target": "Large Language Model.md"
     },
     {
       "source": "Finetuning.md",
@@ -294,6 +411,10 @@
     {
       "source": "Finetuning.md",
       "target": "Preference Training.md"
+    },
+    {
+      "source": "Finetuning.md",
+      "target": "Direct Preference Optimization.md"
     },
     {
       "source": "Softmax.md",
@@ -312,6 +433,14 @@
       "target": "Sigmoid Function.md"
     },
     {
+      "source": "Transformers.md",
+      "target": "Attention.md"
+    },
+    {
+      "source": "Transformers.md",
+      "target": "Neural Network.md"
+    },
+    {
       "source": "Distance Algorithms.md",
       "target": "Dijkstra's Algorithm.md"
     },
@@ -322,6 +451,22 @@
     {
       "source": "Distance Algorithms.md",
       "target": "Manhattan Distance.md"
+    },
+    {
+      "source": "Gradient Flow.md",
+      "target": "Ordinary Differential Equations.md"
+    },
+    {
+      "source": "Gradient Flow.md",
+      "target": "Gradient Descent.md"
+    },
+    {
+      "source": "Gradient Flow.md",
+      "target": "Recursion.md"
+    },
+    {
+      "source": "Egon.md",
+      "target": "Basque/Auxiliary Verbs in Basque.md"
     },
     {
       "source": "Autoencoders.md",
@@ -349,7 +494,7 @@
     },
     {
       "source": "Classification Algorithms.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "Classification Algorithms.md",
@@ -364,8 +509,32 @@
       "target": "Bayes Rule.md"
     },
     {
+      "source": "Named Entity Recognition.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Conditional Random Fields.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Recurrent Neural Networks.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Transformers.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Part-of-speech Tagging.md"
+    },
+    {
       "source": "Direct Preference Optimization.md",
       "target": "Preference Training.md"
+    },
+    {
+      "source": "Direct Preference Optimization.md",
+      "target": "Reward Model.md"
     },
     {
       "source": "Direct Preference Optimization.md",
@@ -386,6 +555,10 @@
     {
       "source": "K-means Clustering.md",
       "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "RL for LLM Alignment.md",
+      "target": "Large Language Model.md"
     },
     {
       "source": "RL for LLM Alignment.md",
@@ -420,6 +593,30 @@
       "target": "Expectation.md"
     },
     {
+      "source": "Preference Training.md",
+      "target": "Reward Model.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Markov Chain.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Part-of-speech Tagging.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Viterbi Algorithm.md"
+    },
+    {
+      "source": "Kernel Trick.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Kernel Trick.md",
+      "target": "Kernel Function.md"
+    },
+    {
       "source": "Maximum A Posteriori.md",
       "target": "Maximum Likelihood Estimation.md"
     },
@@ -428,12 +625,36 @@
       "target": "Bayes Rule.md"
     },
     {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Basque/Basque Question Words.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Morphology.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Conditional Random Fields.md"
+    },
+    {
       "source": "Logistic Regression.md",
       "target": "Classification Algorithms.md"
     },
     {
       "source": "Logistic Regression.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "Logistic Regression.md",
@@ -458,6 +679,10 @@
     {
       "source": "Expected Test Error.md",
       "target": "Expectation.md"
+    },
+    {
+      "source": "Expected Test Error.md",
+      "target": "Variance.md"
     },
     {
       "source": "Support Vector Machine.md",
@@ -529,7 +754,7 @@
     },
     {
       "source": "Gaussian Naive Bayes.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "Gaussian Naive Bayes.md",
@@ -552,6 +777,18 @@
       "target": "Variational Autoencoders.md"
     },
     {
+      "source": "Viterbi Algorithm.md",
+      "target": "Dynamic Programming.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Recursion.md"
+    },
+    {
       "source": "Naive Bayes.md",
       "target": "Classification Algorithms.md"
     },
@@ -572,8 +809,24 @@
       "target": "Bayes Rule.md"
     },
     {
+      "source": "Regular Expressions.md",
+      "target": "Finite State Automata.md"
+    },
+    {
       "source": "Entropy.md",
       "target": "Expectation.md"
+    },
+    {
+      "source": "Stochastic Differential Equations.md",
+      "target": "Ordinary Differential Equations.md"
+    },
+    {
+      "source": "Stochastic Differential Equations.md",
+      "target": "Gradient Flow.md"
+    },
+    {
+      "source": "Stochastic Differential Equations.md",
+      "target": "Diffusion Models.md"
     },
     {
       "source": "Maximum Likelihood Estimation.md",
@@ -608,6 +861,26 @@
       "target": "Neural Network.md"
     },
     {
+      "source": "Finite State Automata.md",
+      "target": "Regular Expressions.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Greedy Algorithms.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Special Distributions.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Cross-Entropy.md"
+    },
+    {
       "source": "Guidance of Diffusion Models.md",
       "target": "Diffusion Models.md"
     },
@@ -629,7 +902,7 @@
     },
     {
       "source": "N-gram Models.md",
-      "target": "Words.md"
+      "target": "Basque/Basque Question Words.md"
     },
     {
       "source": "N-gram Models.md",
@@ -637,7 +910,7 @@
     },
     {
       "source": "N-gram Models.md",
-      "target": "Gaussian Naive Bayes.md"
+      "target": "Naive Bayes.md"
     },
     {
       "source": "KL divergence.md",
@@ -649,11 +922,15 @@
     },
     {
       "source": "KL divergence.md",
-      "target": "Entropy.md"
+      "target": "Cross-Entropy.md"
     },
     {
       "source": "Probability Mass Function.md",
       "target": "Random Variable.md"
+    },
+    {
+      "source": "Basque/Aisia.md",
+      "target": "Lekuak.md"
     },
     {
       "source": "Basque/BASQ 401 - Beginner's Basque.md",
@@ -690,6 +967,10 @@
     {
       "source": "Basque/BASQ 401 - Beginner's Basque.md",
       "target": "Basque/Basque - September 30th.md"
+    },
+    {
+      "source": "Basque/Urtaroak.md",
+      "target": "Basque/Auxiliary Verbs in Basque.md"
     }
   ]
 }
