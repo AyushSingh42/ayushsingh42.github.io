@@ -1,0 +1,406 @@
+---
+---
+
+/* =========================
+   Theme variables
+   ========================= */
+
+:root {
+  --bg: #f6f1e6;            /* bone */
+  --text: #1d1d1d;
+  --muted: #5a5a5a;
+  --rule: rgba(0, 0, 0, 0.12);
+  --link: #1d1d1d;
+
+  --max: 760px;
+  --pad-x: 20px;
+  --pad-y: 28px;
+
+  --h1: 34px;
+  --h2: 26px;
+  --h3: 22px;
+
+  --radius: 10px;
+}
+
+/* =========================
+   Base
+   ========================= */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.container {
+  max-width: var(--max);
+  margin-left: 96px;
+  margin-right: auto;
+  padding: 22px var(--pad-x) var(--pad-y);
+}
+
+
+@media (max-width: 760px) {
+  .container {
+    margin-left: 0;
+  }
+}
+
+
+p {
+  margin: 0 0 14px;
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+small, .small {
+  color: var(--muted);
+  font-size: 0.95em;
+}
+
+/* =========================
+   Top bar navigation
+   ========================= */
+
+.topbar {
+  padding-top: 32px;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 22px;
+}
+
+.topnav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  margin: 0;
+}
+
+.brand-link {
+  font-size: 28px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.topnav {
+  margin-top: 10px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.topnav a {
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.topnav a:hover {
+  border-bottom-color: var(--text);
+}
+
+/* Optional: active link styling if you add a class="active" in your header */
+.topnav a.active {
+  border-bottom-color: var(--text);
+  font-weight: 600;
+}
+
+/* =========================
+   Headings and content
+   ========================= */
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  margin: 26px 0 10px;
+  font-weight: 600;
+}
+
+h1 { font-size: var(--h1); }
+h2 { font-size: var(--h2); }
+h3 { font-size: var(--h3); }
+h4 { font-size: 20px; }
+
+ul, ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+li {
+  margin: 6px 0;
+}
+
+blockquote {
+  margin: 18px 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 22px 0;
+}
+
+/* =========================
+   Code
+   ========================= */
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  padding: 0.12em 0.28em;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius);
+  margin: 16px 0;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+}
+
+/* =========================
+   Tables
+   ========================= */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+th {
+  font-weight: 600;
+}
+
+/* =========================
+   Images
+   ========================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+/* =========================
+   Footer
+   ========================= */
+
+.site-footer {
+  margin-top: 52px;
+  padding-bottom: 32px;
+  font-size: 0.95em;
+  color: var(--muted);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Post lists
+   ========================= */
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  margin: 10px 0;
+}
+
+.list .meta {
+  color: var(--muted);
+  font-size: 0.95em;
+}
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 640px) {
+  .topbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 21px; }
+}
+
+/* =========================
+   Home (text-only)
+   ========================= */
+
+.home-text {
+  margin-top: 18px;
+  max-width: 62ch;
+}
+
+.home-lead {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 1.12em;
+}
+
+/* Header divider */
+
+.nav-divider {
+  margin-top: 14px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+main h1:first-child,
+main h2:first-child,
+main h3:first-child {
+  margin-top: 0;
+}
+
+/* =========================
+   Notes timeline (term + courses)
+   ========================= */
+
+.notes-timeline {
+  margin-top: 18px;
+}
+
+/* Term block */
+.term {
+  position: relative;
+  margin: 18px 0 32px;
+}
+
+/* Left vertical rule */
+.term::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(0,0,0,0.12);
+}
+
+/* Marker row: dot + term label */
+.term-marker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Dot that sits on the rule */
+.term-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 3px solid rgba(0,0,0,0.65);
+  box-sizing: border-box;
+  margin-left: 3px; /* aligns dot center on the rule */
+}
+
+/* Term label typography */
+.term-label {
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+/* Content shifted right of the rule */
+.term-content {
+  margin-top: 14px;
+  padding-left: 44px; /* creates the same inset as your screenshot */
+}
+
+/* Course blocks */
+.course {
+  margin: 0 0 30px;
+}
+
+.course-title {
+  margin: 0 0 6px;
+  font-size: 1.35em;
+}
+
+.course-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.98em;
+}
+
+.course-desc {
+  margin: 0;
+  max-width: 72ch;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  .term::before {
+    left: 8px;
+  }
+
+  .term-content {
+    padding-left: 34px;
+  }
+}

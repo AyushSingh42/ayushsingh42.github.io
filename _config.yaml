@@ -1,0 +1,34 @@
+title: "Ayush Singh"
+description: "CS + Linguistics @ UIUC"
+url: "https://ayushsingh42.github.io"
+baseurl: "" # keep empty for user site; set to "/repo" for project sites
+
+permalink: /blog/:year/:month/:day/:title/
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:slug/
+  research:
+    output: true
+    permalink: /research/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "research"
+    values:
+      layout: "page"
+
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+
+sass:
+  style: compressed

@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+<section class="home-text">
+  {% if page.lead %}
+    <p class="home-lead">{{ page.lead }}</p>
+  {% endif %}
+
+  {{ content }}
+</section>

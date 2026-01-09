@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-09T01:10:26-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ayush Singh</title><subtitle>CS + Linguistics @ UIUC</subtitle><entry><title type="html">Understanding Flow Matching for Image Generation</title><link href="http://localhost:4000/blog/2026/01/09/flow-matching/" rel="alternate" type="text/html" title="Understanding Flow Matching for Image Generation" /><published>2026-01-09T00:00:00-05:00</published><updated>2026-01-09T00:00:00-05:00</updated><id>http://localhost:4000/blog/2026/01/09/flow-matching</id><content type="html" xml:base="http://localhost:4000/blog/2026/01/09/flow-matching/"><![CDATA[<blockquote>
+  <p>Nature’s voice is mathematics, its language is differential equations.</p>
+</blockquote>
+
+<p>This quote, which I did once find attributed to Galileo, has bounced around scientific circles for quite some time and its sentiment has been shared by many scientists and much research in physics and chemistry has backed it up. Differential equations seem to describe much of the natural world and by using them, our power to model the world expands. This blog post aims to cover a more recent use case of this tool: image generation.</p>
+
+<h1 id="introduction-and-intuition">Introduction and Intuition</h1>
+
+<p>To start, an analogy. Imagine you are an explorer in the 16th century getting ready to set sail across a vast ocean. You start in Europe and are setting sail to the Americas, hoping for riches. You know what Europe looks like and can start from many different points on the continent. You also have some information on some major landmarks in the Americas from the work of previous explorers. This is where you and I stand as we embark on our flow matching journey. We have some noise that is distributed according to a multivariate standard Gaussian and we can sample from this, just like how we can start our voyage from anywhere in Europe. We also have some pictures, but we don’t know the exact distribution of these images, just like how we know of some landmarks in the Americas but don’t have a great map of the continent.</p>
+
+<p>Now in order to make the journey across the Atlantic, we need to follow a path. For our intrepid voyager, this means following the trade winds across the ocean. For our flow matching model, it means following a path defined by a vector field. Our model will learn this vector field, and we can use ODE solvers to trace this path and generate our output. Similarly, our captain can use a compass and map to follow the trade winds we’ve charted.</p>
+
+<p>Let’s contrast this with another major architecture for training generative models: diffusion. Imagine diffusion as your rival explorer who throws caution to the wind. Instead of studying the trade winds before setting sail, they simply begin their journey and soldier through whatever bumps they encounter along the way. Our diffusion rival accepts the jaggedness of the storm, reacting to every random gust of noise, hoping to eventually stumble upon the shore.</p>
+
+<p>In contrast, our flow matching explorer learns the winds themselves and charts efficient, deterministic paths from any starting point in Europe to any destination in the New World. By learning the vector field that transforms Gaussian noise into real images from our dataset, we can efficiently generate new images from new Gaussian noise.</p>
+
+<h1 id="plotting-the-course">Plotting the Course</h1>
+
+<p>Now that we have the intuition down for what flow matching is aiming to do, we can get into the “how” for the process. Before we get into that, I want to clarify the terms we are using here and connect back to the analogy one last time to really hammer it home:</p>
+
+<ul>
+  <li><strong>The Departure ($x_0$):</strong> This is a point in Europe, which we define as our “source” distribution. In generative modeling, this is simply a sample of pure noise from a multivariate standard Gaussian, $p_{\text{init}} = \mathcal{N}(0, I)$.</li>
+  <li><strong>The Destination ($x_1$):</strong> This is a landmark in the New World. For us, this is a real image sampled from our dataset ($p_{\text{data}}$).</li>
+  <li><strong>The Voyage Time ($t$):</strong> A value between $0$ and $1$. $t=0$ represents the moment we leave the docks in Europe, and $t=1$ is the moment we arrive at the shore of the Americas.</li>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[Nature’s voice is mathematics, its language is differential equations.]]></summary></entry><entry><title type="html">Probing Multilingual BERT for Ergativity in Basque</title><link href="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/" rel="alternate" type="text/html" title="Probing Multilingual BERT for Ergativity in Basque" /><published>2025-12-18T00:00:00-05:00</published><updated>2025-12-18T00:00:00-05:00</updated><id>http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity</id><content type="html" xml:base="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/"><![CDATA[<p>Multilingual language models like mBERT are trained on data from dozens of languages, most of which follow familiar nominative–accusative patterns such as English or Spanish. A natural question is whether these models genuinely acquire language-specific syntactic structure, or whether they project minority languages into the mold imposed by dominant training data.</p>
+
+<p>In this post, I summarize a probing study that asks whether mBERT internally represents <strong>ergative–absolutive alignment</strong> in Basque, a typologically distinct language isolate.</p>
+
+<h2 id="why-basque-is-a-hard-test">Why Basque is a hard test</h2>
+
+<p>In nominative–accusative languages, the subject of an intransitive verb and the agent of a transitive verb are treated alike. Basque instead aligns the subject of an intransitive verb with the object of a transitive verb (the absolutive), while marking the transitive agent with an ergative suffix. This distinction is morphological rather than positional, and Basque word order is relatively free.</p>
+
+<p>For a model trained largely on Indo-European languages, there is a real risk that it might rely on linear heuristics or majority-language subject biases, rather than encoding Basque morphosyntax.</p>
+
+<h2 id="probing-setup">Probing setup</h2>
+
+<p>To test this, I used a probing framework based on linear classifiers trained on frozen internal representations from each layer of mBERT. The task was to distinguish ergative from absolutive nouns in the Basque-BDT Universal Dependencies treebank.</p>
+
+<p>Several design choices were important:</p>
+
+<ul>
+  <li>I restricted the data to common nouns with explicit <code class="language-plaintext highlighter-rouge">Case=Erg</code> or <code class="language-plaintext highlighter-rouge">Case=Abs</code> annotations.</li>
+  <li>Because Basque is agglutinative, I aligned UD labels with mBERT tokens using a last-subtoken strategy that targets the suffix position where case information is realized.</li>
+  <li>I trained a separate probe for each layer to analyze how syntactic information evolves across depth.</li>
+</ul>
+
+<p>The goal was not downstream performance, but to test whether ergativity is <strong>linearly recoverable</strong> from the model’s representations.</p>
+
+<h2 id="surface-transfer-vs-deep-acquisition">Surface transfer vs. deep acquisition</h2>
+
+<p>The experiment was guided by two competing hypotheses.</p>
+
+<p><strong>Surface transfer:</strong> mBERT treats Basque case as a shallow morphological feature and clusters intransitive subjects with transitive agents, reflecting a nominative bias.</p>
+
+<p><strong>Deep acquisition:</strong> mBERT encodes ergative–absolutive alignment structurally, clustering intransitive subjects with transitive objects.</p>
+
+<p>To directly test for majority-language interference, I introduced a <em>Nominative Bias Score</em>, measuring how often intransitive subjects are misclassified as ergative.</p>
+
+<h2 id="what-the-probes-reveal">What the probes reveal</h2>
+
+<p>The results favor the deep acquisition hypothesis.</p>
+
+<p>Probe accuracy was high across layers, peaking at <strong>95 percent in Layer 9</strong>, consistent with prior work showing that mid-to-upper layers encode syntactic structure. More importantly, the Nominative Bias Score at the peak layer was <strong>0.0366</strong>, meaning that fewer than four percent of intransitive subjects were incorrectly treated as agents.</p>
+
+<p>In other words, mBERT does not appear to force Basque into a nominative template. Instead, it maintains a distinct representational geometry where absolutive arguments cluster together, regardless of grammatical role.</p>
+
+<p>Layer-wise analysis also revealed a meaningful trajectory. Early layers exhibit slightly more bias, which is progressively reduced as representations become more abstract.</p>
+
+<h2 id="why-this-matters">Why this matters</h2>
+
+<p>These findings suggest that multilingual pretraining can support language-specific syntactic representations, even for low-resource languages with typological features absent from most of the training data.</p>
+
+<p>More broadly, the results argue against the view that multilingual models rely only on surface heuristics. At least in this case, mBERT appears capable of encoding non–Indo-European morphosyntax in a structurally faithful way.</p>
+
+<p>The Nominative Bias Score also provides a general diagnostic tool for studying cross-lingual interference, and could be extended to other typological phenomena such as split ergativity, word order variation, or agreement systems.</p>
+
+<p>The complete paper is available here:</p>
+
+<p><a href="/assets/papers/probing-mbert-ergativity-basque.pdf">PDF</a></p>]]></content><author><name></name></author><summary type="html"><![CDATA[Multilingual language models like mBERT are trained on data from dozens of languages, most of which follow familiar nominative–accusative patterns such as English or Spanish. A natural question is whether these models genuinely acquire language-specific syntactic structure, or whether they project minority languages into the mold imposed by dominant training data.]]></summary></entry></feed>
