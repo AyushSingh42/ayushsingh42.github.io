@@ -103,11 +103,13 @@ small, .small {
 }
 
 .brand-link {
-  font-size: 28px;
-  font-weight: 600;
+  font-family: "Charter", Georgia, serif;
+  font-weight: 700;
+  font-size: 30px;
   text-decoration: none;
   color: var(--text);
 }
+
 
 .topnav {
   margin-top: 10px;
