@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-09T23:05:05-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ayush Singh</title><subtitle>CS + Linguistics @ UIUC</subtitle><entry><title type="html">Sailing the Seas of Flow Matching</title><link href="http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching/" rel="alternate" type="text/html" title="Sailing the Seas of Flow Matching" /><published>2026-01-09T00:00:00-05:00</published><updated>2026-01-09T00:00:00-05:00</updated><id>http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching</id><content type="html" xml:base="http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching/"><![CDATA[<blockquote>
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    Sailing the Seas of Flow Matching | Ayush Singh
+  </title>
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <!-- Academic serif via Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <body>
+    <header class="topbar">
+  <div class="container">
+    <div class="brand">
+      <a class="brand-link" href="/">Ayush Singh</a>
+    </div>
+
+    <nav class="topnav" aria-label="Site navigation">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/notes/">Notes</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+
+    <div class="nav-divider"></div>
+  </div>
+</header>
+
+
+    <main class="container">
+      <article class="post">
+    <header class="post-header">
+        <h1 class="post-title">Sailing the Seas of Flow Matching</h1>
+        <div class="post-meta">
+            <time datetime="2026-01-09T00:00:00-05:00">
+                January 09, 2026
+            </time>
+            
+            
+        </div>
+        
+        <div class="post-tags">
+            
+        </div>
+        
+    </header>
+
+    <div class="post-content">
+        <blockquote>
   <p>Nature’s voice is mathematics, its language is differential equations.</p>
 </blockquote>
 
@@ -301,58 +366,39 @@ $$\begin{aligned}
 
 <p>Liu, X., Gong, Z., &amp; Liu, Q. (2022). Flow Straight and Fast: Learning to Generate Images with Diffusion Exponential Integrator Sampler. arXiv preprint arXiv:2209.03003. (Often referred to as “Rectified Flow”).</p>
 
-<p>Cai, S., Ma, Y. A., &amp; Liu, Q. (2024). Flow Matching: A Tutorial. arXiv preprint arXiv:2412.06264. (A more recent, pedagogical breakdown of the topic).</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Nature’s voice is mathematics, its language is differential equations.]]></summary></entry><entry><title type="html">Probing Multilingual BERT for Ergativity in Basque</title><link href="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/" rel="alternate" type="text/html" title="Probing Multilingual BERT for Ergativity in Basque" /><published>2025-12-18T00:00:00-05:00</published><updated>2025-12-18T00:00:00-05:00</updated><id>http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity</id><content type="html" xml:base="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/"><![CDATA[<p>Multilingual language models like mBERT are trained on data from dozens of languages, most of which follow familiar nominative–accusative patterns such as English or Spanish. A natural question is whether these models genuinely acquire language-specific syntactic structure, or whether they project minority languages into the mold imposed by dominant training data.</p>
+<p>Cai, S., Ma, Y. A., &amp; Liu, Q. (2024). Flow Matching: A Tutorial. arXiv preprint arXiv:2412.06264. (A more recent, pedagogical breakdown of the topic).</p>
 
-<p>In this post, I summarize a probing study that asks whether mBERT internally represents <strong>ergative–absolutive alignment</strong> in Basque, a typologically distinct language isolate.</p>
+    </div>
 
-<h2 id="why-basque-is-a-hard-test">Why Basque is a hard test</h2>
+    <footer class="post-footer">
+        <div class="post-navigation">
+            
+            <a class="prev-post" href="/blog/2025/12/18/probing-mbert-ergativity/">
+                ← Probing Multilingual BERT for Ergativity in Basque
+            </a>
+            
+            
+        </div>
+    </footer>
+</article>
+      <footer class="site-footer">
+  <hr/>
 
-<p>In nominative–accusative languages, the subject of an intransitive verb and the agent of a transitive verb are treated alike. Basque instead aligns the subject of an intransitive verb with the object of a transitive verb (the absolutive), while marking the transitive agent with an ergative suffix. This distinction is morphological rather than positional, and Basque word order is relatively free.</p>
+  <div class="footer-inner">
+    <div class="footer-left">
+      © 2026 Ayush Singh
+    </div>
 
-<p>For a model trained largely on Indo-European languages, there is a real risk that it might rely on linear heuristics or majority-language subject biases, rather than encoding Basque morphosyntax.</p>
+    <div class="footer-right">
+      <a href="mailto:singh.ayush05@gmail.com">email</a>
+      ·
+      <a href="https://github.com/ayushsingh42">github</a>
+      ·
+      <a href="/feed.xml">rss</a>
+    </div>
+  </div>
+</footer>
 
-<h2 id="probing-setup">Probing setup</h2>
-
-<p>To test this, I used a probing framework based on linear classifiers trained on frozen internal representations from each layer of mBERT. The task was to distinguish ergative from absolutive nouns in the Basque-BDT Universal Dependencies treebank.</p>
-
-<p>Several design choices were important:</p>
-
-<ul>
-  <li>I restricted the data to common nouns with explicit <code class="language-plaintext highlighter-rouge">Case=Erg</code> or <code class="language-plaintext highlighter-rouge">Case=Abs</code> annotations.</li>
-  <li>Because Basque is agglutinative, I aligned UD labels with mBERT tokens using a last-subtoken strategy that targets the suffix position where case information is realized.</li>
-  <li>I trained a separate probe for each layer to analyze how syntactic information evolves across depth.</li>
-</ul>
-
-<p>The goal was not downstream performance, but to test whether ergativity is <strong>linearly recoverable</strong> from the model’s representations.</p>
-
-<h2 id="surface-transfer-vs-deep-acquisition">Surface transfer vs. deep acquisition</h2>
-
-<p>The experiment was guided by two competing hypotheses.</p>
-
-<p><strong>Surface transfer:</strong> mBERT treats Basque case as a shallow morphological feature and clusters intransitive subjects with transitive agents, reflecting a nominative bias.</p>
-
-<p><strong>Deep acquisition:</strong> mBERT encodes ergative–absolutive alignment structurally, clustering intransitive subjects with transitive objects.</p>
-
-<p>To directly test for majority-language interference, I introduced a <em>Nominative Bias Score</em>, measuring how often intransitive subjects are misclassified as ergative.</p>
-
-<h2 id="what-the-probes-reveal">What the probes reveal</h2>
-
-<p>The results favor the deep acquisition hypothesis.</p>
-
-<p>Probe accuracy was high across layers, peaking at <strong>95 percent in Layer 9</strong>, consistent with prior work showing that mid-to-upper layers encode syntactic structure. More importantly, the Nominative Bias Score at the peak layer was <strong>0.0366</strong>, meaning that fewer than four percent of intransitive subjects were incorrectly treated as agents.</p>
-
-<p>In other words, mBERT does not appear to force Basque into a nominative template. Instead, it maintains a distinct representational geometry where absolutive arguments cluster together, regardless of grammatical role.</p>
-
-<p>Layer-wise analysis also revealed a meaningful trajectory. Early layers exhibit slightly more bias, which is progressively reduced as representations become more abstract.</p>
-
-<h2 id="why-this-matters">Why this matters</h2>
-
-<p>These findings suggest that multilingual pretraining can support language-specific syntactic representations, even for low-resource languages with typological features absent from most of the training data.</p>
-
-<p>More broadly, the results argue against the view that multilingual models rely only on surface heuristics. At least in this case, mBERT appears capable of encoding non–Indo-European morphosyntax in a structurally faithful way.</p>
-
-<p>The Nominative Bias Score also provides a general diagnostic tool for studying cross-lingual interference, and could be extended to other typological phenomena such as split ergativity, word order variation, or agreement systems.</p>
-
-<p>The complete paper is available here:</p>
-
-<p><a href="/assets/papers/probing-mbert-ergativity-basque.pdf">PDF</a></p>]]></content><author><name></name></author><summary type="html"><![CDATA[Multilingual language models like mBERT are trained on data from dozens of languages, most of which follow familiar nominative–accusative patterns such as English or Spanish. A natural question is whether these models genuinely acquire language-specific syntactic structure, or whether they project minority languages into the mold imposed by dominant training data.]]></summary></entry></feed>
+    </main>
+  </body>
+</html>
