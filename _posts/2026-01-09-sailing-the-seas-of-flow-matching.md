@@ -5,7 +5,7 @@ title: "Sailing the Seas of Flow Matching"
 
 > Nature's voice is mathematics, its language is differential equations.
 
-This quote, which I did once find attributed to Galileo, has bounced around scientific circles for quite some time and its sentiment has been shared by many scientists and much research in physics and chemistry has backed it up. Differential equations seem to describe much of the natural world and by using them, our power to model the world expands. This blog post aims to cover a more recent use case of this tool: image generation.
+This quote, which I did once find attributed to Galileo, has bounced around scientific circles for quite some time and its sentiment has been shared by many scientists and much research in physics and chemistry has backed it up. Differential equations seem to describe much of the natural world and by using them, our power to model the world expands. While Galileo couldn't have imagined it, these same mathematical tools now let us generate images, not just model planets. This blog post aims to cover a more recent use case of this tool: flow matching models.
 
 # Introduction and Intuition
 
@@ -279,7 +279,7 @@ $$
 \big\| v_t^\theta(x_t) - \big(x_1 - (1 - \sigma_{\min}) x_0\big) \big\|^2,
 $$
 
-and remarkably, this loss is equivalent to the original flow matching objective up to an additive constant.
+This loss is equivalent to the original flow matching objective up to an additive constant. I have included the proof that shows this because I think it's a nice proof that can build some understanding but it's entirely optional for the scope of this paper.
 
 <details>
 <summary>Proof for why Flow Matching equals Conditional Flow Matching</summary>
@@ -338,11 +338,12 @@ class SinusoidalTimeEmbedding(nn.Module):
         return emb
 ```
 
-Think of this as giving the ship a sophisticated clock. The same location in the Atlantic can demand different steering depending on whether we just left Europe or we are nearing the Americas. The time embedding turns the scalar $t$ into a rich signal the network can use to adjust its winds.
+Think of this as giving the ship a sophisticated clock. The same location in the Atlantic can demand different steering depending on whether we just left Europe or we are nearing the Americas. The time embedding turns the scalar $t$ into a more nuanced signal the network can use to adjust its winds.
 
 Time enters the model as a continuous signal rather than a discrete step count. The sinusoidal embedding allows the navigator to smoothly interpolate its behavior across the voyage, much like how seasonal winds change gradually rather than abruptly. This choice ensures that nearby times correspond to nearby representations, which is essential for stable ODE integration.
 
 Next, we construct the navigator itself. This neural network represents the learned vector field $v_\theta(x,t)$. Given the ship's current position $x$ and the current time $t$, it outputs a velocity vector indicating which direction to move next. Our architecture uses ResBlocks with FiLM (Feature-wise Linear Modulation) conditioning:
+
 ```python
 class ResBlock(nn.Module):
     """A residual block with time conditioning via FiLM.
@@ -434,7 +435,7 @@ class VelocityNet(nn.Module):
         return out
 ```
 
-During training, we do not simulate entire voyages from start to finish. Instead, we randomly stop ships at intermediate times and ask: *what winds should be acting here?* This is the essence of Conditional Flow Matching. Our loss function implements this training objective, with a few practical enhancements:
+During training, we do not simulate entire voyages from start to finish. Instead, we randomly stop ships at intermediate times and ask *what winds should be acting here. Our loss function implements this training objective, with a few practical changes:
 
 ```python
 def flow_matching_loss(model, x1, beta=0.1, lam=3e-5):
@@ -457,7 +458,7 @@ def flow_matching_loss(model, x1, beta=0.1, lam=3e-5):
     return (w * per_pixel).mean() + lam * v.pow(2).mean()
 ```
 
-The weighting factor $t(1-t)$ emphasizes the middle of the journey. This makes intuitive sense: at the very start ($t \approx 0$), we're in pure noise and any direction is fine; near the end ($t \approx 1$), we're already at the image. The critical learning happens in between, where the model must learn to navigate from chaos toward structure.
+The weighting factor $t(1-t)$ emphasizes the middle of the journey. This makes sense intuitively as at the very start ($t \approx 0$), we're in pure noise and any direction is fine while near the end ($t \approx 1$), we're already at the image. The middle is the most crucial part because we are the farthest from our anchors on either end. Learning the middle correctly is what can make or break the model.
 
 To smooth out the navigator's learning over many voyages, we maintain an Exponential Moving Average (EMA) of the model weights. Think of this as the accumulated wisdom of many expeditions:
 
@@ -562,7 +563,7 @@ def sample(model):
 
 The RK4 method evaluates the velocity field at four carefully chosen points within each timestep, then combines them with specific weights. This is analogous to a navigator checking the wind not just at the ship's current position, but also at anticipated future positions, then steering a course that accounts for all these observations. The result is a much smoother, more accurate trajectory than simple Euler integration.
 
-Viewed end to end, Flow Matching transforms generative modeling into a problem of learning and following winds. By replacing stochastic correction with deterministic navigation, we gain smoother trajectories, fewer inference steps, and a clearer conceptual link between learning and generation.
+Viewed end to end, flow matching transforms generative modeling into a problem of learning and following winds. By replacing stochastic correction with deterministic navigation, we gain smoother trajectories, fewer inference steps, and a clearer conceptual link between learning and generation.
 
 Now we can see what the model generates. After training for 50 epochs and using our EMA weights for stability:
 
