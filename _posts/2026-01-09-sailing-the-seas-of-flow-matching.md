@@ -68,20 +68,18 @@ os.makedirs(cfg.out_dir, exist_ok=True)
 print("Using device:", cfg.device)
 ```
 
-This configuration encodes the practical constraints of our voyage. The learning rate controls how quickly the navigator updates its internal map of the winds, while the batch size determines how many ships we observe at once. The parameter $\sigma_{\min}$ enforces a small amount of uncertainty at landfall. We aim for the general vicinity of our destination rather than a singular point, preventing the winds from becoming impossibly precise near shore. Finally, the sampling parameters determine how finely we trace the learned route during inference.
+The learning rate controls how quickly the navigator updates its internal map of the winds, while the batch size determines how many ships we observe at once. The parameter $\sigma_{\min}$ enforces a small amount of uncertainty at landfall. We are aiming for the general area of our destination instead of trying to land at some impossibly precise point. Finally, the sampling parameters determine how finely we trace the learned route during inference.
 
 ## A Quick Differential Equations Aside
 
 The solution to an ODE is defined by a trajectory that maps some time $t$ to some location in the space $\mathbb{R}^d$.
-$$
-X: [0, 1] \rightarrow \mathbb{R}^d, t \mapsto X_t
-$$
+
+$$X: [0, 1] \rightarrow \mathbb{R}^d, t \mapsto X_t$$
+
 Every ODE is defined by some vector field. Going back to the analogy, the vector field is all of the winds that blow across the Atlantic. The solution mentioned above is one such path along one current that can take one ship across the ocean. We write out an ODE defined by a vector field as follows:
-$$
-\frac{\text{d}}{\text{d}t}X_t = u_t(X_t)
-\\
-X_0 = x_0
-$$
+
+$$\frac{\text{d}}{\text{d}t}X_t = u_t(X_t)\\X_0 = x_0$$
+
 The top line says that our ODE is defined according to some vector field $u_t$ with some initial conditions $x_0$. The derivative of $X_t$ is given by the direction of the vector field. In order to find the flow $\psi_t$, we need some initial conditions $X_0 = x_0$ at some $t = 0$. The flow will tell us the current state when we plug in some time $t$. In our analogy, it would allow us to know exactly where the ship is at some time $t$ just by knowing the initial conditions of the ship. This is written out as follows:
 
 $$\psi : \mathbb{R}^d \times [0, 1] \mapsto \mathbb{R}^d, \quad (x_0, t) \mapsto \psi_t(x_0)$$
@@ -95,7 +93,7 @@ $$\psi_0(x_0) = x_0$$
 
 In an ideal world, we could write down a formula that tells us exactly where a ship will be at any time $t$ given the wind field $u_t$. Unfortunately, for most vector fields, including the ones our neural networks learn, no such closed-form solution exists. Instead, we must approximate the trajectory by taking small steps forward in time.
 
-### Euler's Method: The Simple Navigator
+### Euler's Method
 
 The Euler method is a first-order numerical method for solving ODEs. Given $\frac{dx(t)}{dt} = f(t, x)$ and $x(t_0) = x_0$, the Euler method solves the problem via an iterative scheme for $i = 0, 1, \ldots, N-1$ such that
 
@@ -103,9 +101,9 @@ $$x_{i+1} = x_i + \alpha \cdot f(t_i, x_i), \quad i = 0, 1, \ldots, N-1,$$
 
 where $\alpha$ is the step size.
 
-This is beautifully simple: at each step, we move in the direction the wind is currently blowing, scaled by our step size. Imagine you're on a ship and you look at your compass (the vector field) to see which direction to sail. You sail in that direction for a small time $\alpha$, then stop and check your compass again.
+At each step, we move in the direction the wind is currently blowing, scaled by our step size. Imagine you're on a ship and you look at your compass (the vector field) to see which direction to sail. You sail in that direction for a small time $\alpha$, then stop and check your compass again.
 
-However, this method has a critical flaw. If the wind is changing direction as we sail, we'll overshoot or undershoot the true path because we're using outdated information. The Euler method only achieves first-order accuracy, meaning errors accumulate relatively quickly.
+However, this method has a critical flaw. If the wind is changing direction as we sail, we'll overshoot or undershoot the true path because we're using outdated information. The Euler method only achieves first-order accuracy, meaning errors add up fast.
 
 **Example:** Consider the ODE
 $$\frac{dx(t)}{dt} = \frac{x(t) + t^2 - 2}{t + 1}.$$
@@ -124,7 +122,7 @@ for i in range(num_steps):
     x = x + dt * v  # Just move in current direction
 ```
 
-### Runge-Kutta (RK4) Method: The Experienced Helmsman
+### Runge-Kutta (RK4) Method
 
 The Runge-Kutta method is another popularly used ODE solver that achieves much higher accuracy. The RK4 update rule is
 
@@ -139,7 +137,7 @@ k_3 &= f\left(t_i + \frac{\alpha}{2}, \, x_i + \alpha \frac{k_2}{2}\right), \\
 k_4 &= f(t_i + \alpha, \, x_i + \alpha k_3).
 \end{aligned}$$
 
-RK4 is like having an experienced helmsman who doesn't just look at the current wind, but anticipates how it will change over the next interval. At each step, RK4 makes four evaluations:
+RK4 is like having an experienced helmsman who doesn't just look at the current wind, but tries to guess how it will change over the next interval. At each step, RK4 makes four evaluations:
 
 1. **$k_1$**: Check the wind at our current position
 2. **$k_2$**: Predict where we'd be at the midpoint if we followed $k_1$, then check the wind there
@@ -166,7 +164,9 @@ for i in range(cfg.sample_steps):
     x = x + (dt/6.0) * (k1 + 2*k2 + 2*k3 + k4)
 ```
 
-**Why does this matter for Flow Matching?** Because we learned straight-line OT paths, our vector field is relatively smooth and predictable. This means RK4 can trace these paths very accurately with relatively few steps (50-150 in our implementation), whereas diffusion models with their noisy, curved trajectories often need hundreds of steps even with sophisticated solvers. The smoothness of the learned vector field and the accuracy of the numerical solver work together to enable efficient, high-quality generation.
+**Why does this matter for Flow Matching?** 
+
+Because we learned straight-line OT paths, our vector field is relatively smooth and predictable. This means RK4 can trace these paths very accurately with relatively few steps (50-150 in our implementation), whereas diffusion models with their noisy, curved trajectories often need hundreds of steps even with sophisticated solvers. The smoothness of the learned vector field and the accuracy of the numerical solver work together for efficient, high-quality generation.
 
 
 
@@ -174,9 +174,9 @@ for i in range(cfg.sample_steps):
 
 So far, we have focused on the journey of a single ship. One starting point $x_0$, one destination $x_1$, and one path through the ocean defined by a vector field. But to train a generative model, we must zoom out.
 
-The *flow* $\psi_t$ describes how one individual point moves over time. The *probability path* $p_t$, on the other hand, is the satellite view. It captures how an entire distribution of ships evolves as time progresses. At $t=0$, this distribution is a diffuse cloud of ships spread across Europe, sampled from a standard Gaussian. By $t=1$, that cloud has condensed and reshaped itself into the complex structure of real images from our dataset.
+The flow $\psi_t$ describes how one individual point moves over time. The probability path $p_t$, on is the satellite view (I know I said it's the 16th century but use your imagination). It captures how an entire distribution of ships evolves as time progresses. At $t=0$, this distribution is cloud of ships spread across Europe, sampled from a standard Gaussian. By $t=1$, that cloud has condensed and reshaped itself into the complex structure of real images from our dataset.
 
-Formally, $p_t$ is the marginal distribution induced by transporting noise samples forward in time under the learned vector field. If we could directly compute the true vector field that governs this global evolution, we could train a neural network by minimizing
+Formally, $p_t$ is the marginal distribution induced by transporting noise samples forward in time under the learned vector field. If we could directly compute the true vector field that depicts this, we could train a neural network by minimizing
 
 $$
 \mathcal{L}_{\text{FM}}(\theta)
@@ -196,7 +196,7 @@ $$\frac{\partial p_t(x)}{\partial t} + \nabla \cdot (p_t(x) u_t(x)) = 0$$
 
 This equation is just saying that probability is conserved across our whole vector field. Ships simply move across from one state to another such as moving from noise to real data. 
 
-When we train our model, we are looking for some set of parameters for $v^{\theta}_t$ that will satisfy the continuity equation. The beauty of the Conditional Flow Matching proof you saw earlier is that it allows us to satisfy this global "conservation of ships" equation by only ever looking at individual, simple paths.
+When we train our model, we are looking for some set of parameters for $v^{\theta}_t$ that will satisfy the continuity equation. The conditional flow matching proof that comes later on shows that we can satisfy this global "conservation of ships" equation by only ever looking at individual, simple paths.
 
 ### Conditional and Marginal Vector Fields
 
@@ -214,13 +214,13 @@ Before we move forward, I want to connect flow matching back to diffusion, becau
 
 If you have spent any time in the world of generative modeling, you have likely encountered the score function, denoted as $\nabla \log p_t(x)$. In our analogy, if the vector field $u_t(x)$ is the trade wind, then the score function is the lay of the land. The score function points in the direction where the cloud of ships is most dense, essentially telling you where the data distribution is most concentrated. While it tells you where the landmark is, it doesn't necessarily dictate the most efficient path to get there. For the Gaussian probability paths we often use, these two concepts are mathematically intertwined; the marginal vector field $u_t(x)$ can be expressed as a combination of a time-dependent drift and the score function.
 
-The primary differentiator between Flow Matching and Diffusion is the efficiency of the journey. Diffusion models follow the score function, which often results in highly curved, jagged, and stochastic trajectories. This is why our "diffusion rival" requires hundreds of steps. They are constantly fighting the noise of the storm and making small corrections to stay on track. In contrast, by using Optimal Transport (OT) paths, Flow Matching targets a constant, straight-line velocity: $x_1 - (1 - \sigma_{\min}) x_0$. Because the resulting vector field is "flatter" and deterministic, we don't need a hundred small corrections. We can simply set our heading and arrive at the shore in a fraction of the time, often in as few as 10 to 20 steps.
+The primary differentiator between flow matching and diffusion is the efficiency of the journey. Diffusion models follow the score function, which often results in highly curved, jagged, and stochastic trajectories. This is why our "diffusion rival" requires hundreds of steps. They are constantly fighting the noise of the storm and making small corrections to stay on track. In contrast, by using optimal transport (OT) paths, flow matching targets a constant, straight-line velocity: $x_1 - (1 - \sigma_{\min}) x_0$. Because the resulting vector field is "flatter" and deterministic, we don't need a hundred small corrections. We can simply set our heading and arrive at the shore in a fraction of the time, often in as few as 10 to 20 steps.
 
 ### Conditional Flow Matching
 
 Now we get back on track with our explorer sailing the seas.
 
-Instead of mapping the entire ocean at once (our intractable integral), flow matching takes a more clever approach. We condition on a specific destination $x_1$ and only consider voyages that end at that point. In other words, rather than learning the marginal probability path $p_t$, we define a *conditional probability path* $p_t(\cdot \mid x_1)$.
+Instead of mapping the entire ocean at once (our intractable integral), flow matching takes a more clever approach. We condition on a specific destination $x_1$ and only consider voyages that end at that point. In other words, rather than learning the marginal probability path $p_t$, we define a conditional probability path $p_t(\cdot \mid x_1)$.
 
 In practice, this conditional path is chosen to be simple. A common and effective choice is a Gaussian whose mean moves toward $x_1$ while its variance shrinks over time. Early in the journey, ships are widely dispersed. As $t$ increases, they become more concentrated around their destination.
 
@@ -231,7 +231,7 @@ $$
 = \big(1 - (1 - \sigma_{\min}) t\big) x_0 + t x_1.
 $$
 
-This path is linear in time and induces a *constant velocity field*
+This path is linear in time and induces a constant velocity field
 
 $$
 \frac{d}{dt}\psi_t(x_0)
@@ -307,7 +307,7 @@ $$\begin{aligned}
 
 # The Navigator's Code
 
-The beauty of Flow Matching is that the training loop is simple and deterministic.
+The allure of flow matching is that the training loop is simple and deterministic.
 
 The first question the navigator must answer is what time it is. The optimal direction to steer depends not only on where the ship is, but also on how far along the voyage it has progressed. Near Europe, the winds behave differently than they do near the Americas.
 
@@ -604,4 +604,4 @@ For those who wish to dive deeper into the technical proofs and the broader impl
 
 - Liu, X., Gong, C., & Liu, Q. (2022). *Flow straight and fast: Learning to generate and transfer data with rectified flow*. arXiv. https://doi.org/10.48550/arXiv.2209.03003
 
-- Chan, S. H. (2025). *Tutorial on diffusion models for imaging and vision*. arXiv. https://doi.org/10.48550/arXiv.2403.18103
+- Chan, S. H. (2025). *Tutorial on diffusion models for imaging and vision*. arXiv. https://doi.org/10.48550/arXiv.2403.18103`
