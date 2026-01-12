@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-09T23:15:23-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ayush Singh</title><subtitle>CS + Linguistics @ UIUC</subtitle><entry><title type="html">Sailing the Seas of Flow Matching</title><link href="http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching/" rel="alternate" type="text/html" title="Sailing the Seas of Flow Matching" /><published>2026-01-09T00:00:00-05:00</published><updated>2026-01-09T00:00:00-05:00</updated><id>http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching</id><content type="html" xml:base="http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-11T21:50:00-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ayush Singh</title><subtitle>CS + Linguistics @ UIUC</subtitle><entry><title type="html">Sailing the Seas of Flow Matching</title><link href="http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching/" rel="alternate" type="text/html" title="Sailing the Seas of Flow Matching" /><published>2026-01-09T00:00:00-05:00</published><updated>2026-01-09T00:00:00-05:00</updated><id>http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching</id><content type="html" xml:base="http://localhost:4000/blog/2026/01/09/sailing-the-seas-of-flow-matching/"><![CDATA[<blockquote>
   <p>Nature’s voice is mathematics, its language is differential equations.</p>
 </blockquote>
 
-<p>This quote, which I did once find attributed to Galileo, has bounced around scientific circles for quite some time and its sentiment has been shared by many scientists and much research in physics and chemistry has backed it up. Differential equations seem to describe much of the natural world and by using them, our power to model the world expands. This blog post aims to cover a more recent use case of this tool: image generation.</p>
+<p>This quote, which I did once find attributed to Galileo, has bounced around scientific circles for quite some time and its sentiment has been shared by many scientists and much research in physics and chemistry has backed it up. Differential equations seem to describe much of the natural world and by using them, our power to model the world expands. While Galileo couldn’t have imagined it, these same mathematical tools now let us generate images, not just model planets. This blog post aims to cover a more recent use case of this tool: flow matching models.</p>
 
 <h1 id="introduction-and-intuition">Introduction and Intuition</h1>
 
@@ -15,23 +15,22 @@
 <p>In contrast, our flow matching explorer learns the winds themselves and charts efficient, deterministic paths from any starting point in Europe to any destination in the New World. By learning the vector field that transforms Gaussian noise into real images from our dataset, we can efficiently generate new images from new Gaussian noise.</p>
 
 <h1 id="preparing-for-the-journey">Preparing for the Journey</h1>
-<p>A quick note, this section will assume some level of familiarity with differential equations.</p>
+
+<p>A quick note: this section will assume some level of familiarity with differential equations.</p>
 
 <p>Now that we have the intuition down for what flow matching is aiming to do, we can get into the “how” for the process. Before we get into that, I want to clarify the terms we are using here and connect back to the analogy one last time to really hammer it home:</p>
 
 <ul>
   <li><strong>$x_0$:</strong> This is simply a sample of pure noise from a multivariate standard Gaussian, $p_{\text{init}} = \mathcal{N}(0, I)$. In our analogy, this is the point in Europe that we set sail from.</li>
   <li><strong>$x_1$:</strong> This is a real image sampled from our dataset ($p_{\text{data}}$). This was the landmark that we knew of in the Americas in our analogy.</li>
-  <li><strong>$t$:</strong> A value between $0$ and $1$. $t=0$ represents the moment we leave the docks in Europe, and $t=1$ is the moment we arrive at the shore of the Americas. In our generative process, $t=0$ is the the time at which our image is pure Gaussian noise, $t=1$ is when our image is a real image from $p_{data}$, and every in between step is some version of the image with less noise.</li>
+  <li><strong>$t$:</strong> A value between $0$ and $1$. $t=0$ represents the moment we leave the docks in Europe, and $t=1$ is the moment we arrive at the shore of the Americas. In our generative process, $t=0$ is the time at which our image is pure Gaussian noise, $t=1$ is when our image is a real image from $p_{data}$, and every in between step is some version of the image with less noise.</li>
 </ul>
 
 <p>Now our goal is to model the winds that will blow any ship from that point $x_0$ to the real image $x_1$. This model of the wind is a vector field, $u_t$, and the particular path that we want to follow is called a flow, $\psi_t$.</p>
 
-<p>Before we set sail, let’s stock the ship with the necessary import statements:</p>
+<p>Before we set sail, let’s stock the ship with the necessary provisions. Just as a navigator needs maps, a compass, and navigational tables, our computational voyage requires its own essential tools:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># pip install torch torchvision
-</span>
-<span class="kn">import</span> <span class="n">math</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
 <span class="kn">import</span> <span class="n">os</span>
 <span class="kn">from</span> <span class="n">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
@@ -50,34 +49,35 @@
     <span class="n">device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span> <span class="k">if</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="nf">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="sh">"</span><span class="s">cpu</span><span class="sh">"</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">256</span>
     <span class="n">lr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2e-4</span>
-    <span class="n">epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
 
     <span class="c1"># Flow matching params
-</span>    <span class="n">sigma_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-2</span>  <span class="c1"># small endpoint noise
+</span>    <span class="n">sigma_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># small endpoint noise
 </span>    <span class="n">t_eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-5</span>      <span class="c1"># avoid exact endpoints
 </span>
     <span class="c1"># Sampling params
-</span>    <span class="n">sample_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>   <span class="c1"># RK4 steps from t=0-&gt;1
+</span>    <span class="n">sample_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">150</span>   <span class="c1"># RK4 steps from t=0-&gt;1
 </span>    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span>
     <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">fm_out</span><span class="sh">"</span>
 
 <span class="n">cfg</span> <span class="o">=</span> <span class="nc">CFG</span><span class="p">()</span>
 <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Device:</span><span class="sh">"</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Using device:</span><span class="sh">"</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>This configuration encodes the practical constraints of our voyage. The learning rate controls how quickly the navigator updates its internal map of the winds, while the batch size determines how many ships we observe at once. The parameter $\sigma_{\min}$ enforces a small amount of uncertainty at landfall, preventing the winds from becoming singular near the destination. Finally, the sampling parameters determine how finely we trace the learned route during inference.</p>
+<p>The learning rate controls how quickly the navigator updates its internal map of the winds, while the batch size determines how many ships we observe at once. The parameter $\sigma_{\min}$ enforces a small amount of uncertainty at landfall. We are aiming for the general area of our destination instead of trying to land at some impossibly precise point. Finally, the sampling parameters determine how finely we trace the learned route during inference.</p>
 
 <h2 id="a-quick-differential-equations-aside">A Quick Differential Equations Aside</h2>
 
-<p>The solution to an ODE is defined by a trajectory that maps some time $t$ to some location in the space $\mathbb{R}^d$.
-\(X: [0, 1] \rightarrow \mathbb{R}^d, t \mapsto X_t\)
-Every ODE is defined by some vector field. Going back to the analogy, the vector field is all of the winds that blow across the Atlantic. The solution mentioned above is one such path along one current that can take one ship across the ocean. We write out an ODE defined by a vector field as follows:
-\(\frac{\text{d}}{\text{d}t}X_t = u_t(X_t)
-\\
-X_0 = x_0\)
-The top line says that our ODE is defined according to some vector field $u_t$ with some initial conditions $x_0$. The derivative of $X_t$ is given by the direction of the vector field. In order to find the flow $\psi_t$, we need some initial conditions $X_0 = x_0$ at some $t = 0$. The flow will tell us the current state when we plug in some time $t$. In our analogy, it would allow us to know exactly where the ship is at some time $t$ just by knowing the initial conditions of the ship. This is written out as follows:</p>
+<p>The solution to an ODE is defined by a trajectory that maps some time $t$ to some location in the space $\mathbb{R}^d$.</p>
+
+\[X: [0, 1] \rightarrow \mathbb{R}^d, t \mapsto X_t\]
+
+<p>Every ODE is defined by some vector field. Going back to the analogy, the vector field is all of the winds that blow across the Atlantic. The solution mentioned above is one such path along one current that can take one ship across the ocean. We write out an ODE defined by a vector field as follows:</p>
+
+\[\frac{\text{d}}{\text{d}t}X_t = u_t(X_t)\\X_0 = x_0\]
+
+<p>The top line says that our ODE is defined according to some vector field $u_t$ with some initial conditions $x_0$. The derivative of $X_t$ is given by the direction of the vector field. In order to find the flow $\psi_t$, we need some initial conditions $X_0 = x_0$ at some $t = 0$. The flow will tell us the current state when we plug in some time $t$. In our analogy, it would allow us to know exactly where the ship is at some time $t$ just by knowing the initial conditions of the ship. This is written out as follows:</p>
 
 <p>\(\psi : \mathbb{R}^d \times [0, 1] \mapsto \mathbb{R}^d, \quad (x_0, t) \mapsto \psi_t(x_0)\)
 \(\frac{\mathrm{d}}{\mathrm{d}t} \psi_t(x_0) = u_t(\psi_t(x_0))\)
@@ -85,16 +85,95 @@ The top line says that our ODE is defined according to some vector field $u_t$ w
 
 <blockquote>
   <p><strong>A note on $\sigma_{\min}$.</strong><br />
-In practice, flow matching models do not force trajectories to land exactly on a data point at $t=1$. Instead, the endpoint distribution is taken to be a narrow Gaussian centered at $x_1$, with variance $\sigma_{\min}^2 I$. This small but nonzero noise level prevents singular behavior in the vector field, stabilizes training, and improves numerical behavior during ODE sampling. In the idealized limit $\sigma_{\min} \to 0$, the target velocity reduces to the intuitive expression $x_1 - x_0$, which we use throughout for intuition.</p>
+In practice, flow matching models do not force trajectories to land exactly on a data point at $t=1$. Instead, the endpoint distribution is taken to be a narrow Gaussian centered at $x_1$, with variance $\sigma_{\min}^2 I$. This small but nonzero noise level prevents singular behavior in the vector field, stabilizes training, and improves numerical behavior during ODE sampling. Think of it as aiming for a harbor rather than a single dock. We want to reach the general area, allowing for natural variation in our final approach. In the idealized limit $\sigma_{\min} \to 0$, the target velocity reduces to the intuitive expression $x_1 - x_0$.</p>
 </blockquote>
+
+<h3 id="numerical-solvers">Numerical Solvers</h3>
+
+<p>In an ideal world, we could write down a formula that tells us exactly where a ship will be at any time $t$ given the wind field $u_t$. Unfortunately, for most vector fields, including the ones our neural networks learn, no such closed-form solution exists. Instead, we must approximate the trajectory by taking small steps forward in time.</p>
+
+<h3 id="eulers-method">Euler’s Method</h3>
+
+<p>The Euler method is a first-order numerical method for solving ODEs. Given $\frac{dx(t)}{dt} = f(t, x)$ and $x(t_0) = x_0$, the Euler method solves the problem via an iterative scheme for $i = 0, 1, \ldots, N-1$ such that</p>
+
+\[x_{i+1} = x_i + \alpha \cdot f(t_i, x_i), \quad i = 0, 1, \ldots, N-1,\]
+
+<p>where $\alpha$ is the step size.</p>
+
+<p>At each step, we move in the direction the wind is currently blowing, scaled by our step size. Imagine you’re on a ship and you look at your compass (the vector field) to see which direction to sail. You sail in that direction for a small time $\alpha$, then stop and check your compass again.</p>
+
+<p>However, this method has a critical flaw. If the wind is changing direction as we sail, we’ll overshoot or undershoot the true path because we’re using outdated information. The Euler method only achieves first-order accuracy, meaning errors add up fast.</p>
+
+<p><strong>Example:</strong> Consider the ODE
+\(\frac{dx(t)}{dt} = \frac{x(t) + t^2 - 2}{t + 1}.\)</p>
+
+<p>If we apply the Euler method with step size $\alpha$, then the iteration will take the form</p>
+
+\[x_{i+1} = x_i + \alpha \cdot f(t_i, x_i) = x_i + \alpha \cdot \frac{(x_i + t_i^2 - 2)}{t_i + 1}.\]
+
+<p>In code, this looks like:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Simple Euler integration
+</span><span class="n">dt</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">num_steps</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">v</span>  <span class="c1"># Just move in current direction
+</span></code></pre></div></div>
+
+<h3 id="runge-kutta-rk4-method">Runge-Kutta (RK4) Method</h3>
+
+<p>The Runge-Kutta method is another popularly used ODE solver that achieves much higher accuracy. The RK4 update rule is</p>
+
+\[x_{i+1} = x_i + \frac{\alpha}{6} \cdot \big(k_1 + 2k_2 + 2k_3 + k_4\big), \quad i = 1, 2, \ldots, N,\]
+
+<p>where the quantities $k_1, k_2, k_3$ and $k_4$ are defined as</p>
+
+\[\begin{aligned}
+k_1 &amp;= f(x_i, t_i), \\
+k_2 &amp;= f\left(t_i + \frac{\alpha}{2}, \, x_i + \alpha \frac{k_1}{2}\right), \\
+k_3 &amp;= f\left(t_i + \frac{\alpha}{2}, \, x_i + \alpha \frac{k_2}{2}\right), \\
+k_4 &amp;= f(t_i + \alpha, \, x_i + \alpha k_3).
+\end{aligned}\]
+
+<p>RK4 is like having an experienced helmsman who doesn’t just look at the current wind, but tries to guess how it will change over the next interval. At each step, RK4 makes four evaluations:</p>
+
+<ol>
+  <li><strong>$k_1$</strong>: Check the wind at our current position</li>
+  <li><strong>$k_2$</strong>: Predict where we’d be at the midpoint if we followed $k_1$, then check the wind there</li>
+  <li><strong>$k_3$</strong>: Predict where we’d be at the midpoint if we followed $k_2$, then check the wind there</li>
+  <li><strong>$k_4$</strong>: Predict where we’d be at the endpoint if we followed $k_3$, then check the wind there</li>
+</ol>
+
+<p>Then combine these four predictions with the weights shown above: the midpoint evaluations ($k_2$ and $k_3$) are weighted twice as heavily as the endpoint evaluations.</p>
+
+<p>The genius of RK4 is that by sampling the vector field at multiple points within each interval and weighting them appropriately, we achieve fourth-order accuracy. This means that if we halve the step size, our error decreases by a factor of 16, compared to just 2 for Euler’s method.</p>
+
+<p>In our implementation, this looks like:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># RK4 integration - used in our sample() function
+</span><span class="n">dt</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">cfg</span><span class="p">.</span><span class="n">sample_steps</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">sample_steps</span><span class="p">):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),),</span> <span class="n">t0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    
+    <span class="n">k1</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">k1</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">))</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">k2</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">))</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">k3</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">dt</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">))</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="mf">6.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Why does this matter for Flow Matching?</strong></p>
+
+<p>Because we learned straight-line OT paths, our vector field is relatively smooth and predictable. This means RK4 can trace these paths very accurately with relatively few steps (50-150 in our implementation), whereas diffusion models with their noisy, curved trajectories often need hundreds of steps even with sophisticated solvers. The smoothness of the learned vector field and the accuracy of the numerical solver work together for efficient, high-quality generation.</p>
 
 <h2 id="plotting-the-probability-path">Plotting the Probability Path</h2>
 
 <p>So far, we have focused on the journey of a single ship. One starting point $x_0$, one destination $x_1$, and one path through the ocean defined by a vector field. But to train a generative model, we must zoom out.</p>
 
-<p>The <em>flow</em> $\psi_t$ describes how one individual point moves over time. The <em>probability path</em> $p_t$, on the other hand, is the satellite view. It captures how an entire distribution of ships evolves as time progresses. At $t=0$, this distribution is a diffuse cloud of ships spread across Europe, sampled from a standard Gaussian. By $t=1$, that cloud has condensed and reshaped itself into the complex structure of real images from our dataset.</p>
+<p>The flow $\psi_t$ describes how one individual point moves over time. The probability path $p_t$, on is the satellite view (I know I said it’s the 16th century but use your imagination). It captures how an entire distribution of ships evolves as time progresses. At $t=0$, this distribution is cloud of ships spread across Europe, sampled from a standard Gaussian. By $t=1$, that cloud has condensed and reshaped itself into the complex structure of real images from our dataset.</p>
 
-<p>Formally, $p_t$ is the marginal distribution induced by transporting noise samples forward in time under the learned vector field. If we could directly compute the true vector field that governs this global evolution, we could train a neural network by minimizing</p>
+<p>Formally, $p_t$ is the marginal distribution induced by transporting noise samples forward in time under the learned vector field. If we could directly compute the true vector field that depicts this, we could train a neural network by minimizing</p>
 
 \[\mathcal{L}_{\text{FM}}(\theta)
 = \mathbb{E}_{t,\,x \sim p_t}
@@ -104,9 +183,39 @@ In practice, flow matching models do not force trajectories to land exactly on a
 
 <p>Unfortunately, this global wind map is extraordinarily complex. Modeling it directly would require knowing the full intermediate distributions between Gaussian noise and real images, which is computationally intractable.</p>
 
+<h3 id="the-continuity-equation">The Continuity Equation</h3>
+
+<p>Unfortunately this next part will require some physics. The reason we can use a vector field to shape a distribution is due to the Continuity Equation. In our analogy, if we know how the wind is blowing at every coordinate in the Atlantic, we can predict how the entire fleet of ships will spread out or cluster together over time. Mathematically, a probability path $p_t$ is said to be consistent with a vector field $u_t$ if they satisfy the following first-order partial differential equation:</p>
+
+\[\frac{\partial p_t(x)}{\partial t} + \nabla \cdot (p_t(x) u_t(x)) = 0\]
+
+<p>This equation is just saying that probability is conserved across our whole vector field. Ships simply move across from one state to another such as moving from noise to real data.</p>
+
+<p>When we train our model, we are looking for some set of parameters for $v^{\theta}_t$ that will satisfy the continuity equation. The conditional flow matching proof that comes later on shows that we can satisfy this global “conservation of ships” equation by only ever looking at individual, simple paths.</p>
+
+<h3 id="conditional-and-marginal-vector-fields">Conditional and Marginal Vector Fields</h3>
+
+<p>While our navigator trains by looking at a single ship’s path from $x_0$ to a specific $x_1$, the ocean is actually full of ships heading to different destinations. During training, we define a conditional vector field $u_t(x \mid x_1)$, which is the specific wind needed to reach landmark $x_1$.</p>
+
+<p>However, when we actually set sail with new noise at inference time, we don’t know which landmark we are heading toward. The model must instead follow the marginal vector field, $u_t(x)$. This is the “average” of all possible conditional winds at a specific point in the ocean, weighted by how likely it is that a ship at $x$ is headed to a particular $x_1$:</p>
+
+\[u_t(x) = \int u_t(x|x_1) \frac{p_t(x|x_1)p_{data}(x_1)}{p_t(x)} dx_1 = \mathbb{E}_{q(x_1|x)} [u_t(x | x_1)]\]
+
+<p>In simpler terms, if multiple ships heading to different cities all pass through the same patch of sea, the model learns the “consensus” wind that represents the aggregate flow of the entire distribution. In more mathematical terms, the marginal vector field is the aggregation of every conditional vector field where we marginalize the condition out. As we established before, this process is intractable so we cannot learn the marginal vector field in this way.</p>
+
+<h3 id="score-functions">Score Functions</h3>
+
+<p>Before we move forward, I want to connect flow matching back to diffusion, because although this post has repeatedly pitted the two against each other, diffusion can be viewed as a stochastic counterpart to flow matching that uses stochastic differential equations instead of ordinary differential equations.</p>
+
+<p>If you have spent any time in the world of generative modeling, you have likely encountered the score function, denoted as $\nabla \log p_t(x)$. In our analogy, if the vector field $u_t(x)$ is the trade wind, then the score function is the lay of the land. The score function points in the direction where the cloud of ships is most dense, essentially telling you where the data distribution is most concentrated. While it tells you where the landmark is, it doesn’t necessarily dictate the most efficient path to get there. For the Gaussian probability paths we often use, these two concepts are mathematically intertwined; the marginal vector field $u_t(x)$ can be expressed as a combination of a time-dependent drift and the score function.</p>
+
+<p>The primary differentiator between flow matching and diffusion is the efficiency of the journey. Diffusion models follow the score function, which often results in highly curved, jagged, and stochastic trajectories. This is why our “diffusion rival” requires hundreds of steps. They are constantly fighting the noise of the storm and making small corrections to stay on track. In contrast, by using optimal transport (OT) paths, flow matching targets a constant, straight-line velocity: $x_1 - (1 - \sigma_{\min}) x_0$. Because the resulting vector field is “flatter” and deterministic, we don’t need a hundred small corrections. We can simply set our heading and arrive at the shore in a fraction of the time, often in as few as 10 to 20 steps.</p>
+
 <h3 id="conditional-flow-matching">Conditional Flow Matching</h3>
 
-<p>Instead of mapping the entire ocean at once, flow matching takes a more clever approach. We condition on a specific destination $x_1$ and only consider voyages that end at that point. In other words, rather than learning the marginal probability path $p_t$, we define a <em>conditional probability path</em> $p_t(\cdot \mid x_1)$.</p>
+<p>Now we get back on track with our explorer sailing the seas.</p>
+
+<p>Instead of mapping the entire ocean at once (our intractable integral), flow matching takes a more clever approach. We condition on a specific destination $x_1$ and only consider voyages that end at that point. In other words, rather than learning the marginal probability path $p_t$, we define a conditional probability path $p_t(\cdot \mid x_1)$.</p>
 
 <p>In practice, this conditional path is chosen to be simple. A common and effective choice is a Gaussian whose mean moves toward $x_1$ while its variance shrinks over time. Early in the journey, ships are widely dispersed. As $t$ increases, they become more concentrated around their destination.</p>
 
@@ -115,16 +224,42 @@ In practice, flow matching models do not force trajectories to land exactly on a
 \[\psi_t(x_0)
 = \big(1 - (1 - \sigma_{\min}) t\big) x_0 + t x_1.\]
 
-<p>This path is linear in time and induces a <em>constant velocity field</em></p>
+<p>This path is linear in time and induces a constant velocity field</p>
 
 \[\frac{d}{dt}\psi_t(x_0)
 = x_1 - (1 - \sigma_{\min}) x_0.\]
 
 <p>When $\sigma_{\min}$ is small, this velocity closely resembles a straight push from noise toward data. In the idealized limit where $\sigma_{\min} \to 0$, it reduces to the intuitive expression $x_1 - x_0$.</p>
 
-<p>This constant velocity becomes the regression target for our neural network. Rather than learning a complex, stochastic process, the model simply learns the steady winds that carry ships from their noisy origins to their destinations.</p>
+<p>This constant velocity becomes the regression target for our neural network. Rather than learning a complex, stochastic process, the model simply learns the steady winds that carry ships from their noisy origins to their destinations. We can implement this sampling process in code:</p>
 
-<p>As it learns thousands of these conditional voyages, each corresponding to a different destination image, the model implicitly reconstructs the global probability path. This is the key insight of conditional flow matching: by learning many simple, local maps, we recover the full global transport without ever modeling it directly.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sample_ot_path</span><span class="p">(</span><span class="n">x1</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Sample a point along the optimal transport path.
+    
+    This function embodies our voyage planning: given a destination (x1),
+    we randomly choose when to observe the ship (t), determine where it 
+    started (x0), and compute both its current position (xt) and the 
+    constant wind that should be blowing (u).
+    </span><span class="sh">"""</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">x1</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Choose random observation times, avoiding exact endpoints
+</span>    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x1</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">)</span> <span class="o">+</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span>
+    
+    <span class="c1"># Each ship departs from a random point in Europe (Gaussian noise)
+</span>    <span class="n">x0</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn_like</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+    
+    <span class="c1"># Compute current position along the linear path
+</span>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">sigma_min</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
+    <span class="n">xt</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">t</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1</span>
+    
+    <span class="c1"># The constant OT wind that should blow at this position
+</span>    <span class="n">u</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">sigma_min</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span>
+    
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">xt</span><span class="p">,</span> <span class="n">u</span>
+</code></pre></div></div>
+
+<p>As the model learns thousands of these conditional voyages, each corresponding to a different destination image, it implicitly reconstructs the global probability path. This is the key insight of conditional flow matching: by learning many simple, local maps, we recover the full global transport without ever modeling it directly.</p>
 
 <p>The resulting training objective is</p>
 
@@ -132,7 +267,7 @@ In practice, flow matching models do not force trajectories to land exactly on a
 = \mathbb{E}_{t,\,x_1 \sim p_{\text{data}},\,x_0 \sim p_0}
 \big\| v_t^\theta(x_t) - \big(x_1 - (1 - \sigma_{\min}) x_0\big) \big\|^2,\]
 
-<p>and remarkably, this loss is equivalent to the original flow matching objective up to an additive constant.</p>
+<p>This loss is equivalent to the original flow matching objective up to an additive constant. I have included the proof that shows this because I think it’s a nice proof that can build some understanding but it’s entirely optional for the scope of this paper.</p>
 
 <details>
 <summary>Proof for why Flow Matching equals Conditional Flow Matching</summary>
@@ -160,148 +295,304 @@ $$\begin{aligned}
 
 <h1 id="the-navigators-code">The Navigator’s Code</h1>
 
-<p>The beauty of Flow Matching is that the training loop is simple and deterministic.</p>
+<p>The allure of flow matching is that the training loop is simple and deterministic.</p>
 
 <p>The first question the navigator must answer is what time it is. The optimal direction to steer depends not only on where the ship is, but also on how far along the voyage it has progressed. Near Europe, the winds behave differently than they do near the Americas.</p>
 
-<p>To make time usable by a neural network, we embed the scalar $t \in [0,1]$ into a higher-dimensional representation using sinusoidal features.</p>
+<p>To make time usable by a neural network, we embed the scalar $t \in [0,1]$ into a higher-dimensional representation using sinusoidal features. In our sailing analogy, it’s like how a chronometer translates the sun’s position into navigational coordinates:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SinusoidalTimeEmbedding</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Encodes time as a rich navigational signal.
+    
+    Just as a ship</span><span class="sh">'</span><span class="s">s chronometer tells more than just </span><span class="sh">'</span><span class="s">morning</span><span class="sh">'</span><span class="s"> or </span><span class="sh">'</span><span class="s">evening</span><span class="sh">'</span><span class="s">,
+    this embedding transforms scalar time into a high-dimensional representation
+    that allows the network to understand subtle temporal nuances.
+    </span><span class="sh">"""</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
         <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
         <span class="n">self</span><span class="p">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-        <span class="n">half</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">dim</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="n">freqs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">half</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">device</span><span class="p">))</span>
-        <span class="n">args</span> <span class="o">=</span> <span class="n">t</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">freqs</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="p">:]</span>
-        <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">([</span><span class="n">torch</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">args</span><span class="p">)],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># t: (B,) in [0,1]
+</span>        <span class="n">half</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">dim</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">freqs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span>
+            <span class="o">-</span><span class="n">math</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="n">half</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">device</span><span class="p">).</span><span class="nf">float</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">half</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">t</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">freqs</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">([</span><span class="n">torch</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">args</span><span class="p">)],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">dim</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">emb</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">pad</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">emb</span>
 </code></pre></div></div>
 
-<p>Think of this as giving the ship a clock. The same location in the Atlantic can demand different steering depending on whether we just left Europe or we are nearing the Americas. The time embedding turns the scalar $t$ into a rich signal the network can use to adjust its winds.</p>
+<p>Think of this as giving the ship a sophisticated clock. The same location in the Atlantic can demand different steering depending on whether we just left Europe or we are nearing the Americas. The time embedding turns the scalar $t$ into a more nuanced signal the network can use to adjust its winds.</p>
 
 <p>Time enters the model as a continuous signal rather than a discrete step count. The sinusoidal embedding allows the navigator to smoothly interpolate its behavior across the voyage, much like how seasonal winds change gradually rather than abruptly. This choice ensures that nearby times correspond to nearby representations, which is essential for stable ODE integration.</p>
 
-<p>Next, we construct the navigator itself. This neural network represents the learned vector field $v_\theta(x,t)$. Given the ship’s current position $x$ and the current time $t$, it outputs a velocity vector indicating which direction to move next.</p>
+<p>Next, we construct the navigator itself. This neural network represents the learned vector field $v_\theta(x,t)$. Given the ship’s current position $x$ and the current time $t$, it outputs a velocity vector indicating which direction to move next. Our architecture uses ResBlocks with FiLM (Feature-wise Linear Modulation) conditioning:</p>
 
-<p>In physical terms, this network predicts the local trade winds at every point in space and time.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ResBlock</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">A residual block with time conditioning via FiLM.
+    
+    FiLM (Feature-wise Linear Modulation) lets time influence how 
+    the network processes spatial information.
+    </span><span class="sh">"""</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="n">tdim</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">norm1</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">GroupNorm</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">self</span><span class="p">.</span><span class="n">norm2</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">GroupNorm</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># FiLM: time -&gt; (scale, shift)
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">to_film</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">SiLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">tdim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ch</span><span class="p">),</span>
+        <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_emb</span><span class="p">):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">conv1</span><span class="p">(</span><span class="n">F</span><span class="p">.</span><span class="nf">silu</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">norm1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+        
+        <span class="c1"># Apply time-dependent modulation
+</span>        <span class="n">film</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">to_film</span><span class="p">(</span><span class="n">t_emb</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
+        <span class="n">scale</span><span class="p">,</span> <span class="n">shift</span> <span class="o">=</span> <span class="n">film</span><span class="p">.</span><span class="nf">chunk</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">scale</span><span class="p">)</span> <span class="o">+</span> <span class="n">shift</span>
+        
+        <span class="n">h</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">conv2</span><span class="p">(</span><span class="n">F</span><span class="p">.</span><span class="nf">silu</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">norm2</span><span class="p">(</span><span class="n">h</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">h</span>
+</code></pre></div></div>
 
-<p>Next, we construct the navigator itself. This neural network represents the learned vector field $v_\theta(x,t)$. Given the ship’s current position $x$ and the current time $t$, it outputs a velocity vector indicating which direction to move next.</p>
-
-<p>In physical terms, this network predicts the local trade winds at every point in space and time.</p>
+<p>Now we build the complete navigator. We use a U-Net style architecture that processes images while being guided by time. The downsampling and upsampling structure mimics how a navigator zooms out to see the whole ocean, then zooms in for precise local corrections:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">VelocityNet</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">ch</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">tdim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Our navigator: predicts wind direction v_theta(x,t).
+    
+    This U-Net processes the current image and time to predict 
+    which direction to move next. The architecture mirrors how a 
+    navigator considers both broad ocean currents (downsampling) 
+    and local conditions (upsampling with skip connections).
+    </span><span class="sh">"""</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">tdim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
         <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
         <span class="n">self</span><span class="p">.</span><span class="n">time</span> <span class="o">=</span> <span class="nc">SinusoidalTimeEmbedding</span><span class="p">(</span><span class="n">tdim</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">mlp</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">tdim</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
-
-        <span class="n">self</span><span class="p">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">time_mlp</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">tdim</span><span class="p">,</span> <span class="n">tdim</span><span class="p">),</span>
             <span class="n">nn</span><span class="p">.</span><span class="nc">SiLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">SiLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">tdim</span><span class="p">,</span> <span class="n">tdim</span><span class="p">),</span>
         <span class="p">)</span>
-
+        
+        <span class="n">self</span><span class="p">.</span><span class="n">in_conv</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># Down: observe the broad ocean currents
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">rb1</span> <span class="o">=</span> <span class="nc">ResBlock</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">tdim</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">down</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">rb2</span> <span class="o">=</span> <span class="nc">ResBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tdim</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        
+        <span class="c1"># Mid: deepest understanding of the voyage
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">mid</span> <span class="o">=</span> <span class="nc">ResBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tdim</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        
+        <span class="c1"># Up: refine with local corrections
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">ConvTranspose2d</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">rb3</span> <span class="o">=</span> <span class="nc">ResBlock</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">tdim</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        
+        <span class="n">self</span><span class="p">.</span><span class="n">out_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">GroupNorm</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">out_conv</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-        <span class="n">t_emb</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">mlp</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">time</span><span class="p">(</span><span class="n">t</span><span class="p">))[:,</span> <span class="p">:,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">t_emb</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">.</span><span class="nf">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="nf">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">t_emb</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">time_mlp</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">time</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+        
+        <span class="n">h0</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">in_conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">rb1</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">t_emb</span><span class="p">)</span>
+        
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">down</span><span class="p">(</span><span class="n">h1</span><span class="p">)</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">rb2</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="n">t_emb</span><span class="p">)</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">mid</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="n">t_emb</span><span class="p">)</span>
+        
+        <span class="n">h3</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">up</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span>
+        <span class="n">h3</span> <span class="o">=</span> <span class="n">h3</span> <span class="o">+</span> <span class="n">h1</span>  <span class="c1"># skip: recall details from before diving deep
+</span>        <span class="n">h3</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">rb3</span><span class="p">(</span><span class="n">h3</span><span class="p">,</span> <span class="n">t_emb</span><span class="p">)</span>
+        
+        <span class="n">out</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">out_conv</span><span class="p">(</span><span class="n">F</span><span class="p">.</span><span class="nf">silu</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">out_norm</span><span class="p">(</span><span class="n">h3</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">out</span>
 </code></pre></div></div>
 
-<p>This network is our navigator. At each point in space and time, it predicts a velocity vector indicating how the ship should move next. Conditioning on both position and time allows the same navigator to guide ships at every stage of the journey, from open ocean to final approach. Architecturally, we keep the model simple to emphasize that Flow Matching’s power comes from the training objective, not architectural complexity.</p>
+<p>During training, we do not simulate entire voyages from start to finish. Instead, we randomly stop ships at intermediate times and ask *what winds should be acting here. Our loss function implements this training objective, with a few practical changes:</p>
 
-<p>During training, we do not simulate entire voyages from start to finish. Instead, we randomly stop ships at intermediate times and ask: <em>what winds should be acting here?</em> This is the essence of Conditional Flow Matching.</p>
-
-<p>The function below samples a departure point $x_0$, a destination $x_1$, and a random time $t$, then computes the corresponding point $x_t$ along the optimal transport path and its constant target velocity.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sample_ot_path</span><span class="p">(</span><span class="n">x1</span><span class="p">):</span>
-    <span class="n">B</span> <span class="o">=</span> <span class="n">x1</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x1</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
-    <span class="n">x0</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn_like</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
-
-    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">sigma_min</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
-    <span class="n">xt</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">t</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">x1</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">sigma_min</span><span class="p">)</span> <span class="o">*</span> <span class="n">x0</span>
-    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">xt</span><span class="p">,</span> <span class="n">u</span>
-</code></pre></div></div>
-
-<p>Rather than simulating entire voyages during training, we sample random checkpoints along many possible routes. This function constructs those checkpoints by pairing a departure point, a destination, and a random time, then computing the corresponding position and constant OT velocity. In nautical terms, we pause ships mid-voyage and ask: “what wind should be blowing here if the ship is to reach land efficiently?”</p>
-
-<p>With the target wind in hand, training reduces to a simple regression problem. The navigator predicts a velocity at $(x_t, t)$, and we penalize deviations from the true OT velocity. Over many such partial voyages, the model learns a globally consistent wind map.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">flow_matching_loss</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x1</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">flow_matching_loss</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">3e-5</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Compute the conditional flow matching loss.
+    
+    We sample random checkpoints along voyages (via sample_ot_path),
+    ask our navigator which wind should blow there, and penalize 
+    deviations from the true OT wind. The weighting and regularization
+    help stabilize trainin.
+    </span><span class="sh">"""</span>
     <span class="n">t</span><span class="p">,</span> <span class="n">xt</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="nf">sample_ot_path</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
     <span class="n">v</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-    <span class="nf">return </span><span class="p">((</span><span class="n">v</span> <span class="o">-</span> <span class="n">u</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">).</span><span class="nf">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Weight loss by t(1-t): focus more on mid-journey
+</span>    <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)).</span><span class="nf">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="nf">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
+    
+    <span class="c1"># Smooth L1 is more forgiving of outliers than L2
+</span>    <span class="n">per_pixel</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">smooth_l1_loss</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">)</span>
+    <span class="nf">return </span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">per_pixel</span><span class="p">).</span><span class="nf">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">v</span><span class="p">.</span><span class="nf">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">mean</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p>Training reduces to a simple regression problem. The navigator proposes a wind at the current position and time, and we penalize deviations from the optimal transport wind. By repeating this process across countless partial voyages, the model gradually reconstructs a globally consistent wind map without ever observing the full journey at once.</p>
+<p>The weighting factor $t(1-t)$ emphasizes the middle of the journey. This makes sense intuitively as at the very start ($t \approx 0$), we’re in pure noise and any direction is fine while near the end ($t \approx 1$), we’re already at the image. The middle is the most crucial part because we are the farthest from our anchors on either end. Learning the middle correctly is what can make or break the model.</p>
 
-<p>The training loop repeatedly sends fleets of ships across random segments of the ocean. Each batch corresponds to many independent voyages, all sharing the same navigator. Over time, the navigator becomes increasingly accurate at predicting which winds will carry ships toward land.</p>
+<p>To smooth out the navigator’s learning over many voyages, we maintain an Exponential Moving Average (EMA) of the model weights. Think of this as the accumulated wisdom of many expeditions:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">EMA</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">Exponential Moving Average of model parameters.
+    
+    Like how charts improve with each expedition</span><span class="sh">'</span><span class="s">s observations,
+    EMA maintains a smoothed version of the model that often 
+    generalizes better than the latest checkpoint alone.
+    </span><span class="sh">"""</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.999</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">decay</span> <span class="o">=</span> <span class="n">decay</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">shadow</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">.</span><span class="nf">detach</span><span class="p">().</span><span class="nf">clone</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="p">.</span><span class="nf">state_dict</span><span class="p">().</span><span class="nf">items</span><span class="p">()</span>
+        <span class="p">}</span>
+    
+    <span class="nd">@torch.no_grad</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="p">.</span><span class="nf">state_dict</span><span class="p">().</span><span class="nf">items</span><span class="p">():</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">shadow</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="nf">mul_</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">decay</span><span class="p">).</span><span class="nf">add_</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="nf">detach</span><span class="p">(),</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">decay</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">copy_to</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">model</span><span class="p">.</span><span class="nf">load_state_dict</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">shadow</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The training loop repeatedly sends fleets of ships across random segments of the ocean. Each batch corresponds to many independent voyages, all sharing the same navigator. Over time, the navigator becomes increasingly accurate at predicting which winds will carry ships toward land:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">train</span><span class="p">():</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nc">MNIST</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="p">.</span><span class="nc">Compose</span><span class="p">([</span>
-            <span class="n">transforms</span><span class="p">.</span><span class="nc">ToTensor</span><span class="p">(),</span>
-            <span class="n">transforms</span><span class="p">.</span><span class="nc">Lambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">])</span>
-    <span class="p">)</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="nc">DataLoader</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
+    <span class="sh">"""</span><span class="s">Train the flow matching model on MNIST.
+    
+    Each epoch represents a season of exploration. Ships depart 
+    from random points (noise), head toward different landmarks 
+    (digits), and we observe them at random times to learn the 
+    prevailing winds.
+    </span><span class="sh">"""</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="p">.</span><span class="nc">Compose</span><span class="p">([</span>
+        <span class="n">transforms</span><span class="p">.</span><span class="nc">ToTensor</span><span class="p">(),</span>
+        <span class="n">transforms</span><span class="p">.</span><span class="nc">Lambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Scale to [-1, 1]
+</span>    <span class="p">])</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nc">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+    <span class="n">dl</span> <span class="o">=</span> <span class="nc">DataLoader</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
     <span class="n">model</span> <span class="o">=</span> <span class="nc">VelocityNet</span><span class="p">().</span><span class="nf">to</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
     <span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">optim</span><span class="p">.</span><span class="nc">AdamW</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">lr</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">epochs</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">x1</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+    
+    <span class="n">ema</span> <span class="o">=</span> <span class="nc">EMA</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.999</span><span class="p">)</span>
+    
+    <span class="n">model</span><span class="p">.</span><span class="nf">train</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">dl</span><span class="p">):</span>
             <span class="n">x1</span> <span class="o">=</span> <span class="n">x1</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
             <span class="n">loss</span> <span class="o">=</span> <span class="nf">flow_matching_loss</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
             <span class="n">opt</span><span class="p">.</span><span class="nf">zero_grad</span><span class="p">()</span>
             <span class="n">loss</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>
             <span class="n">opt</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">model</span>
+            
+            <span class="n">ema</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">200</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s"> Step </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s"> Loss </span><span class="si">{</span><span class="n">loss</span><span class="p">.</span><span class="nf">item</span><span class="p">()</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">ema</span>
 </code></pre></div></div>
 
 <p>This loop represents many seasons of exploration. Each batch corresponds to a fleet of ships, each heading toward different destinations and observed at different times. Over repeated epochs, the navigator refines its understanding of the winds until it can reliably guide ships from noise to data across the entire ocean.</p>
 
-<p>Once training is complete, generation is simply navigation. We release new ships from Europe (fresh Gaussian noise) and numerically integrate the learned vector field forward in time. This deterministic integration replaces the many stochastic correction steps used in diffusion models.</p>
+<p>Once training is complete, generation is simply navigation. We release new ships from Europe (fresh Gaussian noise) and numerically integrate the learned vector field forward in time. Here we use the Runge-Kutta 4th order (RK4) method:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@torch.no_grad</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Generate images by sailing from noise to data.
+    
+    Starting from random Gaussian noise (Europa</span><span class="sh">'</span><span class="s">s shores), we follow 
+    the learned winds step by step using RK4 integration. Each step 
+    asks the navigator for guidance, then combines multiple velocity 
+    predictions for a smooth, accurate trajectory.
+    </span><span class="sh">"""</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">cfg</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">cfg</span><span class="p">.</span><span class="n">sample_steps</span>
-
+    
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">sample_steps</span><span class="p">):</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),),</span> <span class="n">i</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-
+        <span class="c1"># Evaluate at midpoint of interval for stability
+</span>        <span class="n">t0</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),),</span> <span class="n">t0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># RK4: four evaluations for a single smooth step
+</span>        <span class="n">k1</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+        <span class="n">k2</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">k1</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">))</span>
+        <span class="n">k3</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">k2</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">))</span>
+        <span class="n">k4</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">k3</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">dt</span><span class="p">,</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cfg</span><span class="p">.</span><span class="n">t_eps</span><span class="p">))</span>
+        
+        <span class="c1"># Weighted combination gives accurate trajectory
+</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mf">6.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+    
     <span class="nf">return </span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="nf">clamp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 </code></pre></div></div>
 
-<p>Viewed end to end, Flow Matching transforms generative modeling into a problem of learning and following winds. By replacing stochastic correction with deterministic navigation, we gain smoother trajectories, fewer inference steps, and a clearer conceptual link between learning and generation.</p>
+<p>The RK4 method evaluates the velocity field at four carefully chosen points within each timestep, then combines them with specific weights. This is analogous to a navigator checking the wind not just at the ship’s current position, but also at anticipated future positions, then steering a course that accounts for all these observations. The result is a much smoother, more accurate trajectory than simple Euler integration.</p>
+
+<p>Viewed end to end, flow matching transforms generative modeling into a problem of learning and following winds. By replacing stochastic correction with deterministic navigation, we gain smoother trajectories, fewer inference steps, and a clearer conceptual link between learning and generation.</p>
+
+<p>Now we can see what the model generates. After training for 50 epochs and using our EMA weights for stability:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">,</span> <span class="n">ema</span> <span class="o">=</span> <span class="nf">train</span><span class="p">()</span>
+
+<span class="c1"># Load the smoothed navigator
+</span><span class="n">ema_model</span> <span class="o">=</span> <span class="nc">VelocityNet</span><span class="p">().</span><span class="nf">to</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+<span class="n">ema</span><span class="p">.</span><span class="nf">copy_to</span><span class="p">(</span><span class="n">ema_model</span><span class="p">)</span>
+<span class="n">ema_model</span><span class="p">.</span><span class="nf">eval</span><span class="p">()</span>
+
+<span class="c1"># Set sail from noise
+</span><span class="n">samples</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="n">ema_model</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="nf">make_grid</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="nf">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">n_samples</span><span class="p">)))</span>
+<span class="nf">save_image</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="sh">"</span><span class="s">fm_out/samples.png</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/numbers.png" alt="Numbers generated from our model" /></p>
+
+<p>In these results, we can see some numbers but it’s obviously not SOTA or even production grade. However, I’d say that it’s pretty good for what we can get with Colab. There are there definitely some recognizable numbers in there and you can see how with better methods, better data, and better compute, we could definitely get much better results. This implementation serves as a proof of concept—demonstrating that the core Flow Matching principles work exactly as the mathematics predicts.</p>
 
 <h1 id="why-flow-matching-over-diffusion">Why Flow Matching over Diffusion?</h1>
 
 <p>You might wonder why we went through the trouble of charting these trade winds when diffusion is already so popular. The benefits come when it is time to actually set sail (inference).</p>
 
-<p>Because we trained our model on straight-line paths, the resulting trajectories are incredibly smooth. In practical terms, this means you can generate high-quality images in far fewer steps. While Diffusion often requires dozens or hundreds of “corrections” to reach the data distribution, Flow Matching can often reach the shore in 10–20 steps using a simple Euler ODE solver.</p>
+<p>Because we trained our model on straight-line paths, the resulting trajectories are incredibly smooth. In practical terms, this means you can generate high-quality images in far fewer steps. While Diffusion often requires dozens or hundreds of “corrections” to reach the data distribution, Flow Matching can often reach the shore in 10–20 steps using a simple Euler ODE solver or achieve even better quality with 50-150 RK4 steps as we did here.</p>
 
-<p>Next, diffusion is inherently noisy; every time you generate an image, you are at the mercy of the storm. Flow Matching is a Continuous Normalizing Flow. Once you pick your starting point $x_0$, the path to the final image is deterministic. This makes the model easier to debug and allows for smooth interpolation between different images.</p>
+<p>Next, diffusion is inherently noisy; every time you generate an image, you are at the mercy of the storm. Flow Matching is a Continuous Normalizing Flow. Once you pick your starting point $x_0$, the path to the final image is deterministic. This makes the model easier to debug and allows for smooth interpolation between different images. Want to see a “3” gradually morph into an “8”? Just linearly interpolate the starting noise.</p>
 
-<p>Finally, we have successfully traded complex variance-preserving schedules for a simple line: $x_t = (1-t)x_0 + tx_1$. This simplicity makes Flow Matching much easier to scale to massive datasets and complex architectures.</p>
+<p>Finally, we have successfully traded complex variance-preserving schedules for a simple line: $x_t = (1-t)x_0 + tx_1$. This simplicity makes Flow Matching much easier to scale to massive datasets and complex architectures. The training objective is straightforward regression, the sampling is deterministic ODE integration, and the entire framework rests on solid mathematical foundations rather than carefully tuned noise schedules.</p>
 
 <h2 id="references">References</h2>
+
 <p>For those who wish to dive deeper into the technical proofs and the broader implications of Flow Matching, I highly recommend the following papers:</p>
 
-<p>Lipman, Y., Chen, R. T., Locatello, F., Esser, P., &amp; Le, M. (2022). Flow Matching for Scalable Generative Models. arXiv preprint arXiv:2210.02747. (The foundational paper introducing the framework).</p>
-
-<p>Albergo, M. S., &amp; Vanden-Eijnden, E. (2022). Building Normalizing Flows with Stochastic Interpolants. arXiv preprint arXiv:2209.15571. (Introduces the similar concept of “Stochastic Interpolants”).</p>
-
-<p>Liu, X., Gong, Z., &amp; Liu, Q. (2022). Flow Straight and Fast: Learning to Generate Images with Diffusion Exponential Integrator Sampler. arXiv preprint arXiv:2209.03003. (Often referred to as “Rectified Flow”).</p>
-
-<p>Cai, S., Ma, Y. A., &amp; Liu, Q. (2024). Flow Matching: A Tutorial. arXiv preprint arXiv:2412.06264. (A more recent, pedagogical breakdown of the topic).</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Nature’s voice is mathematics, its language is differential equations.]]></summary></entry><entry><title type="html">Probing Multilingual BERT for Ergativity in Basque</title><link href="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/" rel="alternate" type="text/html" title="Probing Multilingual BERT for Ergativity in Basque" /><published>2025-12-18T00:00:00-05:00</published><updated>2025-12-18T00:00:00-05:00</updated><id>http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity</id><content type="html" xml:base="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/"><![CDATA[<p>Multilingual language models like mBERT are trained on data from dozens of languages, most of which follow familiar nominative–accusative patterns such as English or Spanish. A natural question is whether these models genuinely acquire language-specific syntactic structure, or whether they project minority languages into the mold imposed by dominant training data.</p>
+<ul>
+  <li>
+    <p>Lipman, Y., Chen, R. T. Q., Ben-Hamu, H., Nickel, M., &amp; Le, M. (2022). <em>Flow matching for generative modeling</em>. arXiv. https://doi.org/10.48550/arXiv.2210.02747</p>
+  </li>
+  <li>
+    <p>Holderrieth, P., &amp; Erives, E. (2025). <em>An introduction to flow matching and diffusion models</em>. arXiv. https://doi.org/10.48550/arXiv.2506.02070</p>
+  </li>
+  <li>
+    <p>Liu, X., Gong, C., &amp; Liu, Q. (2022). <em>Flow straight and fast: Learning to generate and transfer data with rectified flow</em>. arXiv. https://doi.org/10.48550/arXiv.2209.03003</p>
+  </li>
+  <li>
+    <p>Chan, S. H. (2025). <em>Tutorial on diffusion models for imaging and vision</em>. arXiv. https://doi.org/10.48550/arXiv.2403.18103`</p>
+  </li>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[Nature’s voice is mathematics, its language is differential equations.]]></summary></entry><entry><title type="html">Probing Multilingual BERT for Ergativity in Basque</title><link href="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/" rel="alternate" type="text/html" title="Probing Multilingual BERT for Ergativity in Basque" /><published>2025-12-18T00:00:00-05:00</published><updated>2025-12-18T00:00:00-05:00</updated><id>http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity</id><content type="html" xml:base="http://localhost:4000/blog/2025/12/18/probing-mbert-ergativity/"><![CDATA[<p>Multilingual language models like mBERT are trained on data from dozens of languages, most of which follow familiar nominative–accusative patterns such as English or Spanish. A natural question is whether these models genuinely acquire language-specific syntactic structure, or whether they project minority languages into the mold imposed by dominant training data.</p>
 
 <p>In this post, I summarize a probing study that asks whether mBERT internally represents <strong>ergative–absolutive alignment</strong> in Basque, a typologically distinct language isolate.</p>
 

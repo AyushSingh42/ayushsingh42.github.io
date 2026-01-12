@@ -581,7 +581,7 @@ grid = make_grid(samples, nrow=int(math.sqrt(cfg.n_samples)))
 save_image(grid, "fm_out/samples.png")
 ```
 
-![Numbers generated from our model](../assets/img/numbers.png "MNIST digits generated via flow matching")
+![Numbers generated from our model]({{ '/assets/img/numbers.png' | relative_url }})
 
 In these results, we can see some numbers but it's obviously not SOTA or even production grade. However, I'd say that it's pretty good for what we can get with Colab. There are there definitely some recognizable numbers in there and you can see how with better methods, better data, and better compute, we could definitely get much better results. This implementation serves as a proof of concept—demonstrating that the core Flow Matching principles work exactly as the mathematics predicts.
 
