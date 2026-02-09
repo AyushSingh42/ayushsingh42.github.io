@@ -10,7 +10,9 @@ I am particularly interested in mechanistic interpretability of neural language 
 
 Outside of academics, I enjoy reading, watching and analyzing basketball, and writing informally. This site serves as a place to organize research notes, longer essays, and thoughts that do not fit neatly elsewhere.
 
-## Recent writing
-{% for post in site.posts limit:4 %}
-- [{{ post.title }}]({{ post.url | relative_url }}) <span class="small">{{ post.date | date: "%b %d, %Y" }}</span>
+## News
+
+{% assign all_news = site.data.news | concat: site.posts | sort: 'date' | reverse %}
+{% for item in all_news limit: 5 %}
+- <span class="small">{{ item.date | date: "%b %d, %Y" }}</span> — {% if item.title %}[Blog: {{ item.title }}]({{ item.url | relative_url }}){% else %}{{ item.content | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}
 {% endfor %}
