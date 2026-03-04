@@ -12,8 +12,7 @@ Outside of academics, I enjoy reading, watching and analyzing basketball, and wr
 
 ## News
 
-{% assign all_items = site.posts | concat: site.data.news %}
-{% assign all_news = all_items | sort: 'date' | reverse %}
+{% assign all_news = site.data.news | sort: 'date' | reverse %}
 {% for item in all_news limit: 5 %}
-- <span class="small">{{ item.date | date: "%b %d, %Y" }}</span> — {% if item.url %}[Blog: {{ item.title }}]({{ item.url | relative_url }}){% else %}{{ item.content | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}
+- <span class="small">{{ item.date | date: "%b %d, %Y" }}</span> — {{ item.content | markdownify | remove: '<p>' | remove: '</p>' }}
 {% endfor %}
