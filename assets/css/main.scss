@@ -310,6 +310,7 @@ img {
   margin-top: 14px;
   margin-bottom: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
+  max-width: 600px;
 }
 
 main h1:first-child,
@@ -405,4 +406,40 @@ main h3:first-child {
   .term-content {
     padding-left: 34px;
   }
+}
+
+/* =========================
+   Footnotes
+   ========================= */
+
+.footnote {
+  text-decoration: none;
+  
+  /* Matches your code block background or a slight darkening of your bone background */
+  background-color: rgba(0, 0, 0, 0.05); 
+  
+  /* Uses your existing rule color for a subtle border */
+  border: 1px solid var(--rule);
+  
+  /* Uses your theme's primary text/link color */
+  color: var(--link);
+  
+  display: inline-block;
+  padding: 1px 5px;
+  margin-left: 2px;
+  
+  /* Matches your existing code and radius variables */
+  border-radius: 4px; 
+  font-size: 0.75em;
+  font-weight: 600;
+  
+  /* Adjusts the vertical "lift" to match your screenshots */
+  vertical-align: super;
+  line-height: 1;
+}
+
+/* Optional: remove the underline just for the footnote box */
+a.footnote:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.08);
 }

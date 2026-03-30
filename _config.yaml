@@ -5,6 +5,10 @@ baseurl: "" # keep empty for user site; set to "/repo" for project sites
 
 permalink: /blog/:year/:month/:day/:title/
 
+header_pages:
+  - research.md
+  - blog.md
+
 collections:
   notes:
     output: true
