@@ -6,7 +6,7 @@ permalink: /research/
 
 # Research
 
-I am affiliated with the UIUC Computational Linguistics Laboratory, specfically the Computational Semantics Lab . Currently, I am working with Professor Aleksandre Maskharashvili on natural language generation from table statistics to text using generalized quantifiers.
+I am affiliated with the UIUC Computational Linguistics Laboratory, specifically the Computational Semantics Lab . Currently, I am working with Professor Aleksandre Maskharashvili on natural language generation from table statistics to text using generalized quantifiers.
 
 I am also a SPAR AI Fellow where I am working on exploring sparse representations in LLMs using SAEs, LoRA, latent geometry analysis, and formal verification tools, under Dr. Yuxiao Li.
 
