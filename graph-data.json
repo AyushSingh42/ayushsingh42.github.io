@@ -1,0 +1,1454 @@
+{
+  "nodes": [
+    {
+      "id": "Latent Space.md"
+    },
+    {
+      "id": "Probability Distribution.md"
+    },
+    {
+      "id": "Dependency Parsing.md"
+    },
+    {
+      "id": "Jensen's Inequality.md"
+    },
+    {
+      "id": "Instruction Tuning.md"
+    },
+    {
+      "id": "Conditional Independence.md"
+    },
+    {
+      "id": "Bottom-Up Parsing.md"
+    },
+    {
+      "id": "Viterbi Algorithm.md"
+    },
+    {
+      "id": "Probability Density Function.md"
+    },
+    {
+      "id": "Classification Algorithms.md"
+    },
+    {
+      "id": "Lekuak.md"
+    },
+    {
+      "id": "Bi egia, gezur bat.md"
+    },
+    {
+      "id": "Basque Expressions.md"
+    },
+    {
+      "id": "Variance.md"
+    },
+    {
+      "id": "Naive Bayes.md"
+    },
+    {
+      "id": "Context-Free Grammar.md"
+    },
+    {
+      "id": "Random Vector.md"
+    },
+    {
+      "id": "Multilayer Perceptron.md"
+    },
+    {
+      "id": "Embedding Algorithm.md"
+    },
+    {
+      "id": "Lexical Semantics.md"
+    },
+    {
+      "id": "Neural Network.md"
+    },
+    {
+      "id": "Clustering Algorithms.md"
+    },
+    {
+      "id": "Backtracking.md"
+    },
+    {
+      "id": "Cumulative Distribution Function.md"
+    },
+    {
+      "id": "Markov Chain.md"
+    },
+    {
+      "id": "Gradient Descent.md"
+    },
+    {
+      "id": "Diffusion Models.md"
+    },
+    {
+      "id": "Hodgkins and Huxley Model.md"
+    },
+    {
+      "id": "Recursion.md"
+    },
+    {
+      "id": "Finetuning.md"
+    },
+    {
+      "id": "RL for LLM Alignment.md"
+    },
+    {
+      "id": "Words.md"
+    },
+    {
+      "id": "Basque Verb Tense Selection.md"
+    },
+    {
+      "id": "Random Variable.md"
+    },
+    {
+      "id": "AdaBoost.md"
+    },
+    {
+      "id": "Cosine Tuning.md"
+    },
+    {
+      "id": "Dijkstra's Algorithm.md"
+    },
+    {
+      "id": "Guidance of Diffusion Models.md"
+    },
+    {
+      "id": "Cross-Entropy.md"
+    },
+    {
+      "id": "Hidden Markov Models.md"
+    },
+    {
+      "id": "Bayes Rule.md"
+    },
+    {
+      "id": "Maximum Entropy Markov Models.md"
+    },
+    {
+      "id": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "id": "Supervised Learning.md"
+    },
+    {
+      "id": "Gaussian Naive Bayes.md"
+    },
+    {
+      "id": "Moment-Generating Function.md"
+    },
+    {
+      "id": "Direct Preference Optimization.md"
+    },
+    {
+      "id": "Minkowski Distance.md"
+    },
+    {
+      "id": "Long Short-Term Memory.md"
+    },
+    {
+      "id": "Neural Encoding Models.md"
+    },
+    {
+      "id": "Untitled 2.md"
+    },
+    {
+      "id": "Preference Training.md"
+    },
+    {
+      "id": "Kernel Trick.md"
+    },
+    {
+      "id": "Regression Algorithms.md"
+    },
+    {
+      "id": "Ordinary Differential Equations.md"
+    },
+    {
+      "id": "Joint Distribution.md"
+    },
+    {
+      "id": "Past Tense Auxiliaries in Basque.md"
+    },
+    {
+      "id": "Softmax.md"
+    },
+    {
+      "id": "Expectation.md"
+    },
+    {
+      "id": "Self-Attention.md"
+    },
+    {
+      "id": "K-Nearest Neighbor.md"
+    },
+    {
+      "id": "KL divergence.md"
+    },
+    {
+      "id": "Conditional Random Fields.md"
+    },
+    {
+      "id": "Part-of-speech Tagging.md"
+    },
+    {
+      "id": "Maximum A Posteriori.md"
+    },
+    {
+      "id": "Newton's Method.md"
+    },
+    {
+      "id": "Autoencoders.md"
+    },
+    {
+      "id": "Superposition.md"
+    },
+    {
+      "id": "Reward Model.md"
+    },
+    {
+      "id": "CFG Parsing.md"
+    },
+    {
+      "id": "Regular Expressions.md"
+    },
+    {
+      "id": "Gradient Flow.md"
+    },
+    {
+      "id": "Morphology.md"
+    },
+    {
+      "id": "Joint Cumulative Probability Function.md"
+    },
+    {
+      "id": "Distance Algorithms.md"
+    },
+    {
+      "id": "Backpropagation.md"
+    },
+    {
+      "id": "Sigmoid Function.md"
+    },
+    {
+      "id": "Types of Generative Models.md"
+    },
+    {
+      "id": "Neuron.md"
+    },
+    {
+      "id": "Activation Function.md"
+    },
+    {
+      "id": "basque 4-2-26.md"
+    },
+    {
+      "id": "Reinforcement Learning.md"
+    },
+    {
+      "id": "Decision Trees.md"
+    },
+    {
+      "id": "Euclidean Distance.md"
+    },
+    {
+      "id": "Transformers.md"
+    },
+    {
+      "id": "Bag of Words.md"
+    },
+    {
+      "id": "Hierarchical Clustering.md"
+    },
+    {
+      "id": "Raster Plot.md"
+    },
+    {
+      "id": "Probability Mass Function.md"
+    },
+    {
+      "id": "Gaussian Distribution.md"
+    },
+    {
+      "id": "Principal Component Analysis.md"
+    },
+    {
+      "id": "Variational Autoencoders.md"
+    },
+    {
+      "id": "Expected Test Error.md"
+    },
+    {
+      "id": "BatchNorm.md"
+    },
+    {
+      "id": "Kernel Function.md"
+    },
+    {
+      "id": "Dynamic Programming.md"
+    },
+    {
+      "id": "N-gram Models.md"
+    },
+    {
+      "id": "Perceptron.md"
+    },
+    {
+      "id": "Untitled.md"
+    },
+    {
+      "id": "K-means Clustering.md"
+    },
+    {
+      "id": "Unsupervised Learning.md"
+    },
+    {
+      "id": "Logistic Regression.md"
+    },
+    {
+      "id": "Markovian Hierarchical Variational Autoencoders.md"
+    },
+    {
+      "id": "Large Language Model.md"
+    },
+    {
+      "id": "Bagging.md"
+    },
+    {
+      "id": "Linear Regression.md"
+    },
+    {
+      "id": "Manhattan Distance.md"
+    },
+    {
+      "id": "Sparse Autoencoder.md"
+    },
+    {
+      "id": "Jacobian Matrix.md"
+    },
+    {
+      "id": "Stochastic Differential Equations.md"
+    },
+    {
+      "id": "BERT.md"
+    },
+    {
+      "id": "Random Forests.md"
+    },
+    {
+      "id": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "id": "Special Distributions.md"
+    },
+    {
+      "id": "Graph.md"
+    },
+    {
+      "id": "Marginal Distribution.md"
+    },
+    {
+      "id": "Covariance.md"
+    },
+    {
+      "id": "Greedy Algorithms.md"
+    },
+    {
+      "id": "Gustatzen.md"
+    },
+    {
+      "id": "Entropy.md"
+    },
+    {
+      "id": "Continuous Bag of Words.md"
+    },
+    {
+      "id": "basque jeopardy.md"
+    },
+    {
+      "id": "Machine Learning Paradigms.md"
+    },
+    {
+      "id": "Untitled 1.md"
+    },
+    {
+      "id": "Finite State Automata.md"
+    },
+    {
+      "id": "Recurrent Neural Networks.md"
+    },
+    {
+      "id": "Named Entity Recognition.md"
+    },
+    {
+      "id": "Support Vector Machine.md"
+    },
+    {
+      "id": "Konparaketak.md"
+    },
+    {
+      "id": "Top-Down Parsing.md"
+    },
+    {
+      "id": "NP-Hard.md"
+    },
+    {
+      "id": "Loss Function.md"
+    },
+    {
+      "id": "TF-IDF.md"
+    },
+    {
+      "id": "Basque/Some Basque.md"
+    },
+    {
+      "id": "Basque/Basque - August 28th.md"
+    },
+    {
+      "id": "Basque/Basque - September 18th.md"
+    },
+    {
+      "id": "Basque/Basque - September 30th.md"
+    },
+    {
+      "id": "Basque/Aisia.md"
+    },
+    {
+      "id": "Basque/Etorkizuna.md"
+    },
+    {
+      "id": "Basque/Urtaroak.md"
+    },
+    {
+      "id": "Basque/Basque - August 26th.md"
+    },
+    {
+      "id": "Basque/Basque - September 11th.md"
+    },
+    {
+      "id": "Basque/Basque - September 4th.md"
+    },
+    {
+      "id": "Basque/Basque Question Words.md"
+    },
+    {
+      "id": "Basque/BASQ 401 - Beginner's Basque.md"
+    },
+    {
+      "id": "Basque/Basque - September 2nd.md"
+    },
+    {
+      "id": "Basque/Egon.md"
+    },
+    {
+      "id": "Basque/Basque - September 9th.md"
+    },
+    {
+      "id": "Basque/Basque.md"
+    },
+    {
+      "id": "Basque/Auxiliary Verbs in Basque.md"
+    },
+    {
+      "id": "Basque/Basque - November 18th.md"
+    },
+    {
+      "id": "Basque/Basque - September 16th.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "Latent Space.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Dependency Parsing.md",
+      "target": "Graph.md"
+    },
+    {
+      "source": "Instruction Tuning.md",
+      "target": "Large Language Model.md"
+    },
+    {
+      "source": "Instruction Tuning.md",
+      "target": "Supervised Learning.md"
+    },
+    {
+      "source": "Instruction Tuning.md",
+      "target": "Continuous Bag of Words.md"
+    },
+    {
+      "source": "Instruction Tuning.md",
+      "target": "Cross-Entropy.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Dynamic Programming.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Viterbi Algorithm.md",
+      "target": "Recursion.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "K-Nearest Neighbor.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Multilayer Perceptron.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Naive Bayes.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Gaussian Naive Bayes.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Supervised Learning.md"
+    },
+    {
+      "source": "Classification Algorithms.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Conditional Independence.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Maximum A Posteriori.md"
+    },
+    {
+      "source": "Naive Bayes.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Random Vector.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Random Vector.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Random Vector.md",
+      "target": "Covariance.md"
+    },
+    {
+      "source": "Multilayer Perceptron.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Multilayer Perceptron.md",
+      "target": "Multilayer Perceptron.md"
+    },
+    {
+      "source": "Multilayer Perceptron.md",
+      "target": "Activation Function.md"
+    },
+    {
+      "source": "Multilayer Perceptron.md",
+      "target": "Backpropagation.md"
+    },
+    {
+      "source": "Clustering Algorithms.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Clustering Algorithms.md",
+      "target": "Hierarchical Clustering.md"
+    },
+    {
+      "source": "Clustering Algorithms.md",
+      "target": "K-means Clustering.md"
+    },
+    {
+      "source": "Cumulative Distribution Function.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Cumulative Distribution Function.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Latent Space.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Markov Chain.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "source": "Diffusion Models.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Hodgkins and Huxley Model.md",
+      "target": "Neural Encoding Models.md"
+    },
+    {
+      "source": "Hodgkins and Huxley Model.md",
+      "target": "Neuron.md"
+    },
+    {
+      "source": "Finetuning.md",
+      "target": "Large Language Model.md"
+    },
+    {
+      "source": "Finetuning.md",
+      "target": "Instruction Tuning.md"
+    },
+    {
+      "source": "Finetuning.md",
+      "target": "Preference Training.md"
+    },
+    {
+      "source": "Finetuning.md",
+      "target": "Direct Preference Optimization.md"
+    },
+    {
+      "source": "RL for LLM Alignment.md",
+      "target": "Large Language Model.md"
+    },
+    {
+      "source": "RL for LLM Alignment.md",
+      "target": "Reinforcement Learning.md"
+    },
+    {
+      "source": "AdaBoost.md",
+      "target": "Decision Trees.md"
+    },
+    {
+      "source": "AdaBoost.md",
+      "target": "Bagging.md"
+    },
+    {
+      "source": "Cosine Tuning.md",
+      "target": "Neural Encoding Models.md"
+    },
+    {
+      "source": "Cosine Tuning.md",
+      "target": "Raster Plot.md"
+    },
+    {
+      "source": "Cosine Tuning.md",
+      "target": "Neuron.md"
+    },
+    {
+      "source": "Cosine Tuning.md",
+      "target": "Linear Regression.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Diffusion Models.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Softmax.md"
+    },
+    {
+      "source": "Guidance of Diffusion Models.md",
+      "target": "Cross-Entropy.md"
+    },
+    {
+      "source": "Cross-Entropy.md",
+      "target": "Entropy.md"
+    },
+    {
+      "source": "Cross-Entropy.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Markov Chain.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Part-of-speech Tagging.md"
+    },
+    {
+      "source": "Hidden Markov Models.md",
+      "target": "Viterbi Algorithm.md"
+    },
+    {
+      "source": "Maximum Entropy Markov Models.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Multivariate Gaussian Distribution.md",
+      "target": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "source": "Multivariate Gaussian Distribution.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Multivariate Gaussian Distribution.md",
+      "target": "Random Vector.md"
+    },
+    {
+      "source": "Multivariate Gaussian Distribution.md",
+      "target": "Probability Density Function.md"
+    },
+    {
+      "source": "Supervised Learning.md",
+      "target": "Machine Learning Paradigms.md"
+    },
+    {
+      "source": "Supervised Learning.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Supervised Learning.md",
+      "target": "Regression Algorithms.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Naive Bayes.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Gaussian Naive Bayes.md",
+      "target": "Probability Density Function.md"
+    },
+    {
+      "source": "Moment-Generating Function.md",
+      "target": "Probability Distribution.md"
+    },
+    {
+      "source": "Moment-Generating Function.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Moment-Generating Function.md",
+      "target": "Variance.md"
+    },
+    {
+      "source": "Moment-Generating Function.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Moment-Generating Function.md",
+      "target": "Probability Density Function.md"
+    },
+    {
+      "source": "Direct Preference Optimization.md",
+      "target": "Preference Training.md"
+    },
+    {
+      "source": "Direct Preference Optimization.md",
+      "target": "Reward Model.md"
+    },
+    {
+      "source": "Direct Preference Optimization.md",
+      "target": "Cross-Entropy.md"
+    },
+    {
+      "source": "Minkowski Distance.md",
+      "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "Minkowski Distance.md",
+      "target": "Manhattan Distance.md"
+    },
+    {
+      "source": "Long Short-Term Memory.md",
+      "target": "Recurrent Neural Networks.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Instruction Tuning.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Sigmoid Function.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Cross-Entropy.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Gradient Descent.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Loss Function.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Preference Training.md",
+      "target": "Reward Model.md"
+    },
+    {
+      "source": "Kernel Trick.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Kernel Trick.md",
+      "target": "Kernel Function.md"
+    },
+    {
+      "source": "Past Tense Auxiliaries in Basque.md",
+      "target": "Basque/Auxiliary Verbs in Basque.md"
+    },
+    {
+      "source": "Softmax.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Softmax.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Expectation.md",
+      "target": "Probability Density Function.md"
+    },
+    {
+      "source": "Self-Attention.md",
+      "target": "Transformers.md"
+    },
+    {
+      "source": "Self-Attention.md",
+      "target": "Embedding Algorithm.md"
+    },
+    {
+      "source": "Self-Attention.md",
+      "target": "Lexical Semantics.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Distance Algorithms.md"
+    },
+    {
+      "source": "K-Nearest Neighbor.md",
+      "target": "Minkowski Distance.md"
+    },
+    {
+      "source": "KL divergence.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "KL divergence.md",
+      "target": "Cross-Entropy.md"
+    },
+    {
+      "source": "KL divergence.md",
+      "target": "Entropy.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Graph.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Conditional Random Fields.md",
+      "target": "Viterbi Algorithm.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Continuous Bag of Words.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Morphology.md"
+    },
+    {
+      "source": "Part-of-speech Tagging.md",
+      "target": "Conditional Random Fields.md"
+    },
+    {
+      "source": "Maximum A Posteriori.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Maximum A Posteriori.md",
+      "target": "Bayes Rule.md"
+    },
+    {
+      "source": "Autoencoders.md",
+      "target": "Principal Component Analysis.md"
+    },
+    {
+      "source": "Autoencoders.md",
+      "target": "Latent Space.md"
+    },
+    {
+      "source": "CFG Parsing.md",
+      "target": "Context-Free Grammar.md"
+    },
+    {
+      "source": "CFG Parsing.md",
+      "target": "Top-Down Parsing.md"
+    },
+    {
+      "source": "CFG Parsing.md",
+      "target": "Bottom-Up Parsing.md"
+    },
+    {
+      "source": "Regular Expressions.md",
+      "target": "Finite State Automata.md"
+    },
+    {
+      "source": "Gradient Flow.md",
+      "target": "Ordinary Differential Equations.md"
+    },
+    {
+      "source": "Gradient Flow.md",
+      "target": "Gradient Descent.md"
+    },
+    {
+      "source": "Gradient Flow.md",
+      "target": "Recursion.md"
+    },
+    {
+      "source": "Joint Cumulative Probability Function.md",
+      "target": "Cumulative Distribution Function.md"
+    },
+    {
+      "source": "Joint Cumulative Probability Function.md",
+      "target": "Joint Distribution.md"
+    },
+    {
+      "source": "Joint Cumulative Probability Function.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Joint Cumulative Probability Function.md",
+      "target": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Dijkstra's Algorithm.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Euclidean Distance.md"
+    },
+    {
+      "source": "Distance Algorithms.md",
+      "target": "Manhattan Distance.md"
+    },
+    {
+      "source": "Backpropagation.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Backpropagation.md",
+      "target": "Loss Function.md"
+    },
+    {
+      "source": "Sigmoid Function.md",
+      "target": "Logistic Regression.md"
+    },
+    {
+      "source": "Sigmoid Function.md",
+      "target": "Activation Function.md"
+    },
+    {
+      "source": "Sigmoid Function.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Types of Generative Models.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Types of Generative Models.md",
+      "target": "Diffusion Models.md"
+    },
+    {
+      "source": "Neuron.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Activation Function.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Activation Function.md",
+      "target": "Sigmoid Function.md"
+    },
+    {
+      "source": "Activation Function.md",
+      "target": "Backpropagation.md"
+    },
+    {
+      "source": "Reinforcement Learning.md",
+      "target": "Supervised Learning.md"
+    },
+    {
+      "source": "Reinforcement Learning.md",
+      "target": "Unsupervised Learning.md"
+    },
+    {
+      "source": "Reinforcement Learning.md",
+      "target": "Neural Encoding Models.md"
+    },
+    {
+      "source": "Reinforcement Learning.md",
+      "target": "Cosine Tuning.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Greedy Algorithms.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Special Distributions.md"
+    },
+    {
+      "source": "Decision Trees.md",
+      "target": "Entropy.md"
+    },
+    {
+      "source": "Transformers.md",
+      "target": "Self-Attention.md"
+    },
+    {
+      "source": "Transformers.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Transformers.md",
+      "target": "Embedding Algorithm.md"
+    },
+    {
+      "source": "Hierarchical Clustering.md",
+      "target": "Clustering Algorithms.md"
+    },
+    {
+      "source": "Hierarchical Clustering.md",
+      "target": "Greedy Algorithms.md"
+    },
+    {
+      "source": "Raster Plot.md",
+      "target": "Neuron.md"
+    },
+    {
+      "source": "Probability Mass Function.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Principal Component Analysis.md",
+      "target": "Covariance.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Latent Space.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Loss Function.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Joint Distribution.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Jensen's Inequality.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Backpropagation.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Variational Autoencoders.md",
+      "target": "Gradient Descent.md"
+    },
+    {
+      "source": "Expected Test Error.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Expected Test Error.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Expected Test Error.md",
+      "target": "Variance.md"
+    },
+    {
+      "source": "BatchNorm.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "N-gram Models.md",
+      "target": "Continuous Bag of Words.md"
+    },
+    {
+      "source": "N-gram Models.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "N-gram Models.md",
+      "target": "Naive Bayes.md"
+    },
+    {
+      "source": "K-means Clustering.md",
+      "target": "Clustering Algorithms.md"
+    },
+    {
+      "source": "K-means Clustering.md",
+      "target": "Hierarchical Clustering.md"
+    },
+    {
+      "source": "K-means Clustering.md",
+      "target": "NP-Hard.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Naive Bayes.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Sigmoid Function.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Gradient Descent.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Newton's Method.md"
+    },
+    {
+      "source": "Logistic Regression.md",
+      "target": "Maximum A Posteriori.md"
+    },
+    {
+      "source": "Markovian Hierarchical Variational Autoencoders.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Markovian Hierarchical Variational Autoencoders.md",
+      "target": "Markov Chain.md"
+    },
+    {
+      "source": "Markovian Hierarchical Variational Autoencoders.md",
+      "target": "Diffusion Models.md"
+    },
+    {
+      "source": "Bagging.md",
+      "target": "Decision Trees.md"
+    },
+    {
+      "source": "Linear Regression.md",
+      "target": "Multivariate Gaussian Distribution.md"
+    },
+    {
+      "source": "Linear Regression.md",
+      "target": "Maximum Likelihood Estimation.md"
+    },
+    {
+      "source": "Sparse Autoencoder.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Sparse Autoencoder.md",
+      "target": "Variational Autoencoders.md"
+    },
+    {
+      "source": "Sparse Autoencoder.md",
+      "target": "Superposition.md"
+    },
+    {
+      "source": "Sparse Autoencoder.md",
+      "target": "Loss Function.md"
+    },
+    {
+      "source": "Jacobian Matrix.md",
+      "target": "Probability Density Function.md"
+    },
+    {
+      "source": "Jacobian Matrix.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Stochastic Differential Equations.md",
+      "target": "Ordinary Differential Equations.md"
+    },
+    {
+      "source": "Stochastic Differential Equations.md",
+      "target": "Gradient Flow.md"
+    },
+    {
+      "source": "Stochastic Differential Equations.md",
+      "target": "Diffusion Models.md"
+    },
+    {
+      "source": "BERT.md",
+      "target": "Transformers.md"
+    },
+    {
+      "source": "Random Forests.md",
+      "target": "Decision Trees.md"
+    },
+    {
+      "source": "Random Forests.md",
+      "target": "Bagging.md"
+    },
+    {
+      "source": "Maximum Likelihood Estimation.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Special Distributions.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Special Distributions.md",
+      "target": "Probability Mass Function.md"
+    },
+    {
+      "source": "Marginal Distribution.md",
+      "target": "Joint Distribution.md"
+    },
+    {
+      "source": "Marginal Distribution.md",
+      "target": "Probability Distribution.md"
+    },
+    {
+      "source": "Marginal Distribution.md",
+      "target": "Random Variable.md"
+    },
+    {
+      "source": "Entropy.md",
+      "target": "Expectation.md"
+    },
+    {
+      "source": "Machine Learning Paradigms.md",
+      "target": "Supervised Learning.md"
+    },
+    {
+      "source": "Machine Learning Paradigms.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Machine Learning Paradigms.md",
+      "target": "Regression Algorithms.md"
+    },
+    {
+      "source": "Machine Learning Paradigms.md",
+      "target": "Unsupervised Learning.md"
+    },
+    {
+      "source": "Machine Learning Paradigms.md",
+      "target": "Reinforcement Learning.md"
+    },
+    {
+      "source": "Finite State Automata.md",
+      "target": "Regular Expressions.md"
+    },
+    {
+      "source": "Recurrent Neural Networks.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Hidden Markov Models.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Conditional Random Fields.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Recurrent Neural Networks.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Transformers.md"
+    },
+    {
+      "source": "Named Entity Recognition.md",
+      "target": "Part-of-speech Tagging.md"
+    },
+    {
+      "source": "Support Vector Machine.md",
+      "target": "Classification Algorithms.md"
+    },
+    {
+      "source": "Top-Down Parsing.md",
+      "target": "Context-Free Grammar.md"
+    },
+    {
+      "source": "Top-Down Parsing.md",
+      "target": "Backtracking.md"
+    },
+    {
+      "source": "Loss Function.md",
+      "target": "Machine Learning Paradigms.md"
+    },
+    {
+      "source": "Loss Function.md",
+      "target": "Linear Regression.md"
+    },
+    {
+      "source": "Loss Function.md",
+      "target": "Neural Network.md"
+    },
+    {
+      "source": "Basque/Aisia.md",
+      "target": "Lekuak.md"
+    },
+    {
+      "source": "Basque/Urtaroak.md",
+      "target": "Basque/Basque.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - August 26th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - August 28th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 2nd.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 4th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 9th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 11th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 16th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 18th.md"
+    },
+    {
+      "source": "Basque/BASQ 401 - Beginner's Basque.md",
+      "target": "Basque/Basque - September 30th.md"
+    },
+    {
+      "source": "Basque/Egon.md",
+      "target": "Basque/Auxiliary Verbs in Basque.md"
+    }
+  ]
+}
