@@ -8,7 +8,7 @@ I study computer science and linguistics at the University of Illinois Urbana-Ch
 
 I am particularly interested in mechanistic interpretability of neural language models, with an emphasis on understanding how linguistic structure and reasoning emerge in learned representations. My work explores probing tasks, representation analysis, and causal interventions as tools for studying internal model behavior.
 
-Outside of academics, I enjoy reading, watching and analyzing basketball, and writing informally. This site serves as a place to organize research notes, longer essays, and thoughts that do not fit neatly elsewhere.
+Outside of school, I like to read, watch lots and lots of basketball, and watch movies (and sometimes I write about them which you can find [here](https://ayushsingh42.substack.com/?utm_campaign=profile_chips)). When I am not inside I like to play basketball and go bouldering. 
 
 ## News
 
