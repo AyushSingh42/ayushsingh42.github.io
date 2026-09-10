@@ -6,9 +6,9 @@ lead: "CS + Linguistics @ UIUC"
 
 I study computer science and linguistics at the University of Illinois Urbana-Champaign. My interests include natural language processing, computational linguistics, and the study of language through data-driven and formal methods.
 
-I am particularly interested in mechanistic interpretability of neural language models, with an emphasis on understanding how linguistic structure and reasoning emerge in learned representations. My work explores probing tasks, representation analysis, and causal interventions as tools for studying internal model behavior.
+I am broadly interested in understanding and improving how language models reason over structured information. My research focuses on the intersection of language model reasoning, linguistic structure, and verifiable generation, with particular interest in using formal and executable feedback to evaluate and post-train models. I am also interested in mechanistic interpretability as a means of understanding how these capabilities are represented and emerge internally.
 
-Outside of school, I like to read, watch lots and lots of basketball, and watch movies (and sometimes I write about them which you can find [here](https://ayushsingh42.substack.com/?utm_campaign=profile_chips)). When I am not inside I like to play basketball and go bouldering. 
+Outside of school, I like to read, watch lots and lots of basketball, and watch movies (and sometimes I write about them which you can find [here](https://letterboxd.com/ayush42/)). When I am not inside I like to play basketball and go bouldering. 
 
 ## News
 
